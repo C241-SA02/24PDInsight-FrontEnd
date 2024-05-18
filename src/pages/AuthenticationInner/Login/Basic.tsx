@@ -6,6 +6,7 @@ import AuthIcon from "../AuthIcon";
 import logoLight from "assets/images/logo-light.png";
 import logoDark from "assets/images/logo-dark.png";
 import { Link } from "react-router-dom";
+import { colors } from "react-select/dist/declarations/src/theme";
 
 const Basic = () => {
 
@@ -29,13 +30,13 @@ const Basic = () => {
                 <div className="mb-0 w-screen lg:mx-auto lg:w-[500px] card shadow-lg border-none shadow-slate-100 dark:shadow-zink-500/20 relative">
                     <div className="!px-10 !py-12 card-body">
                         <Link to="/">
-                            <img src={logoLight} alt="" className="hidden h-6 mx-auto dark:block" />
-                            <img src={logoDark} alt="" className="block h-6 mx-auto dark:hidden" />
+                            <img src={logoLight} alt="" className="hidden h-9 mx-auto dark:block" />
+                            <img src={logoDark} alt="" className="block h-9 mx-auto dark:hidden" />
                         </Link>
 
-                        <div className="mt-8 text-center">
-                            <h4 className="mb-1 text-custom-500 dark:text-custom-500">Welcome Back !</h4>
-                            <p className="text-slate-500 dark:text-zink-200">Sign in to continue to Tailwick.</p>
+                        <div className="mt-8">
+                            <h2 className="mb-1 text-custom-100 dark:text-custom-100">Welcome Back!</h2>
+                            <p className="text-slate-500 dark:text-zink-200">Please enter your details.</p>
                         </div>
 
                         <form action="/" className="mt-10" id="signInForm">

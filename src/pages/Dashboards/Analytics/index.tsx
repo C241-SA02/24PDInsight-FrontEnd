@@ -28,7 +28,7 @@ const Analytics = () => {
         <Reports />
         <MonthlyCampaign />
         <Subscription />
-        <TrafficSource /> */}
+        <TrafficSource />  */}
       </div>
     </React.Fragment>
   );

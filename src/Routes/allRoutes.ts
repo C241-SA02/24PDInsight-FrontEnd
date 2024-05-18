@@ -313,7 +313,7 @@ const authProtectedRoutes: Array<RouteObject> = [
   { path: "/apps-ecommerce-product-create", component: AddNew },
   { path: "/apps-ecommerce-cart", component: ShoppingCart },
   { path: "/apps-ecommerce-checkout", component: Checkout },
-  { path: "/apps-ecommerce-orders", component: Orders },
+  { path: "/history", component: Orders },
   { path: "/apps-ecommerce-order-overview", component: OrderOverview },
   { path: "/apps-ecommerce-sellers", component: Sellers },
 

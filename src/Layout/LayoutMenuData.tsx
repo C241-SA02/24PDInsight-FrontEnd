@@ -38,10 +38,10 @@ const menuData: any = [
         icon: <PictureInPicture2 />,
     },
     {
-        id: 'chat',
+        id: 'history',
         label: 'History',
         icon: <History />,
-        link: '/apps-chat',
+        link: '/history',
     },
     {
         id: 'email',

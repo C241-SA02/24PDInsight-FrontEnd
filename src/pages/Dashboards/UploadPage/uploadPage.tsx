@@ -5,20 +5,29 @@ import axios from 'axios';
 
 
 const UploadPage = () => {
+  const [isLoading, setIsLoading] = useState(false);
 
-  const submit = async (values: any) => {
+  const submitHandler = async (values: any) => {
+    setIsLoading(true)
     if (values.myFile) {
       try {
-        const response = await axios.post(`/api/uploadfile`,{
+        const uploadResponse = await axios.post(`/api/uploadfile`, {
           file: values.myFile
         }, {
-          headers:{
+          headers: {
             'Content-Type': 'multipart/form-data'
           }
         })
 
-        console.log('Response:', response.data);
-        return response.data
+        // const responseData = uploadResponse.data
+
+        console.log('Response:', uploadResponse.data);
+        console.log('Status:', uploadResponse.status);
+        console.log('Headers:', uploadResponse.headers);
+
+
+        setIsLoading(false)
+        // return response.data
       } catch (error) {
         console.error('Error to upload files: ', error);
         throw error;
@@ -44,6 +53,14 @@ const UploadPage = () => {
     }
   }
 
+  const handleChangeLink = (event: any) => {
+    const { target } = event
+    validation.setFieldValue(target.name, target.value);
+  }
+
+  const handleChangeFile = (e: any) => {
+    validation.setFieldValue('myFile', e.target.files[0]);
+  };
 
   const validation: any = useFormik({
     initialValues: {
@@ -51,7 +68,7 @@ const UploadPage = () => {
       link: ''
     },
     onSubmit: (values: any) => {
-      submit(values);
+      submitHandler(values);
     },
     validationSchema: Yup.object().shape({
       myFile: Yup.mixed()
@@ -89,15 +106,6 @@ const UploadPage = () => {
         }),
     })
   });
-
-  const handleChangeLink = (event: any) => {
-    const { target } = event
-    validation.setFieldValue(target.name, target.value);
-  }
-
-  const handleChangeFile = (e: any) => {
-    validation.setFieldValue('myFile', e.target.files[0]);
-  };
 
   const [uploadType, setUploadType] = useState<'file' | 'link'>('file'); // Default to file upload
 
@@ -231,14 +239,16 @@ const UploadPage = () => {
                           )}
                         </div>
                       )}
-                      {/* Convert Button */}
+                      {/* Submit Button */}
                       <div className="flex justify-center">
                         <button
                           type="submit"
-                          className="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20 px-10 flex-shrink mt-8"
+                          className={`text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20 px-10 flex-shrink mt-8 ${isLoading ? 'opacity-50 cursor-not-allowed' : ''}`}
+                          disabled={isLoading}
                         >
-                          Upload
+                          {isLoading ? 'Uploading...' : 'Upload'}
                         </button>
+                  
                       </div>
                     </div>
                   </form>
@@ -251,5 +261,7 @@ const UploadPage = () => {
     </React.Fragment>
   );
 };
+
+
 
 export default UploadPage;

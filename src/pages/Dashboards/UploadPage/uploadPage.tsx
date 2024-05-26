@@ -41,8 +41,6 @@ const UploadPage = () => {
         console.error('Error posting link:', error);
         throw error;
       }
-
-      // axios.post('http://localhost:3001/api')
     }
   }
 

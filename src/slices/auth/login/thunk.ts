@@ -36,7 +36,11 @@ export const loginUser = (
 
         if (response) {
             dispatch(loginSuccess(response));
+<<<<<<< HEAD
             history("/");
+=======
+            history("/dashboard");
+>>>>>>> e82bc1eb7bde4f7d090a524c6e230b9fad16e0af
         }
     } catch (error) {
 
@@ -67,6 +71,10 @@ export const socialLogin = (type: any, history: any) => async (dispatch: any) =>
         let response: any;
 
         if (process.env.REACT_APP_DEFAULTAUTH === "firebase") {
+<<<<<<< HEAD
+=======
+            console.log("Tried Social Login");
+>>>>>>> e82bc1eb7bde4f7d090a524c6e230b9fad16e0af
             const fireBaseBackend = getFirebaseBackend();
             response = fireBaseBackend.socialLoginUser(type);
         }

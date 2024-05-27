@@ -34,7 +34,7 @@ import { InvoiceList } from "./invoice";
 import { UserListViewData, GridViewData } from "./users";
 
 // table
-import { basic, reactTableData } from "./table";
+import { basic, reactTableData, historyTableData } from "./table";
 
 // pricing 
 import { pricingData, cardData } from "./pages";
@@ -96,6 +96,7 @@ export {
     // table
     basic,
     reactTableData,
+    historyTableData,
 
     // pricing
     pricingData,

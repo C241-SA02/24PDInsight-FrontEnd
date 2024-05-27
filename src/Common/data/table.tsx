@@ -30,15 +30,14 @@ const basic = [
 ];
 
 const reactTableData = [
-    { name: "Tiger Nixon", position: "System Architect", office: "Edinburgh", age: 61, startDate: "2011-04-25", salary: "$320,800" },
-    { name: "Garrett Winters", position: "Accountant", office: "Tokyo", age: 63, startDate: "2011-07-25", salary: "$170,750" },
-    { name: "Ashton Cox", position: "Junior Technical Author", office: "San Francisco", age: 66, startDate: "2009-01-12", salary: "$86,000" },
-    { name: "Cedric Kelly", position: "Senior Javascript Developer", office: "Edinburgh", age: 22, startDate: "2012-03-29", salary: "$433,060" },
-    { name: "Airi Satou", position: "Accountant", office: "Tokyo", age: 33, startDate: "2008-11-28", salary: "$162,700" },
-    { name: "Brielle Williamson", position: "Integration Specialist", office: "New York", age: 61, startDate: "2012-12-02", salary: "$372,000" },
-    { name: "Herrod Chandler", position: "Sales Assistant", office: "San Francisco", age: 59, startDate: "2012-08-06", salary: "$137,500" },
-    { name: "Rhona Davidson", position: "Integration Specialist", office: "Tokyo", age: 55, startDate: "2010-10-14", salary: "$327,900" }
+    { name: "Tiger Nixon", position: "System Architect", age: 61, office: "Edinburgh", startDate: "2011/04/25", salary: "$320,800" }
+];
+
+const historyTableData = [
+    { Date: "2023-07-02", category: "Sentiment Analysis", link: "DebatCapres_Anies-vs-Prabowo.wav"},
+    { Date: "2023-07-02", category: "NER", link: "https://www.youtube.com/watch?v=z0cY8nn5GyQ"},
+    { Date: "2023-07-02", category: "Topic Modelling", link: "https://www.youtube.com/watch?v=OdptPKaEMFQ"}
 ]
 
 
-export { basic, reactTableData };
+export { basic, reactTableData, historyTableData };

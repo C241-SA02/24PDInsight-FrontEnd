@@ -5,6 +5,9 @@ import Email from "pages/Dashboards/Email";
 import HRDashboard from "pages/Dashboards/HR";
 import SocialMediaDashboard from "pages/Dashboards/SocialMedia";
 
+//History
+import HistoryTable from "pages/History";
+
 // Chat
 import Chat from "pages/Chat";
 
@@ -313,7 +316,7 @@ const authProtectedRoutes: Array<RouteObject> = [
   { path: "/apps-ecommerce-product-create", component: AddNew },
   { path: "/apps-ecommerce-cart", component: ShoppingCart },
   { path: "/apps-ecommerce-checkout", component: Checkout },
-  { path: "/history", component: Orders },
+  { path: "/history", component: HistoryTable },
   { path: "/apps-ecommerce-order-overview", component: OrderOverview },
   { path: "/apps-ecommerce-sellers", component: Sellers },
 

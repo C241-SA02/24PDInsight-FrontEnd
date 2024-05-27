@@ -12,14 +12,25 @@ import Subscription from './Subscription';
 import TrafficSource from './TrafficSource';
 import ProductsStatistics from './ProductsStatistics';
 
+import Transcribed from './Transcribed';
+import SentimentAnalysis from './SentimentAnalysis';
+import NamedEntityRecognition from './NamedEntityRecognition';
+import TopicModelling from './TopicModelling';
+import Summarization from './Summarization';
+
 const Analytics = () => {
 
   return (
     <React.Fragment>
       <BreadCrumb title='Analytics' pageTitle='Analytics'/>
       <div className="grid grid-cols-12 gap-x-5">
+        <Transcribed></Transcribed>
+        <SentimentAnalysis></SentimentAnalysis>
+        <TopicModelling></TopicModelling>
+        <NamedEntityRecognition></NamedEntityRecognition>
+        <Summarization></Summarization>
         {/* <Widgets /> */}
-        <LocationBased />
+        {/* <LocationBased /> */}
         {/* <Interaction />
         <UserDevice />
         <Satisfaction />

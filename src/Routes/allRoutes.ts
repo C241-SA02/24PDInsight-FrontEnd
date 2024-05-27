@@ -1,9 +1,13 @@
 // dashboard
+<<<<<<< HEAD
 import Analytics from "pages/Dashboards/Analytics";
 import Ecommerce from "pages/Dashboards/Ecommerce";
 import Email from "pages/Dashboards/Email";
 import HRDashboard from "pages/Dashboards/HR";
 import SocialMediaDashboard from "pages/Dashboards/SocialMedia";
+
+//History
+import HistoryTable from "pages/History";
 
 // Chat
 import Chat from "pages/Chat";
@@ -196,6 +200,15 @@ import Pricing from "pages/Pages/Pricing";
 import Faqs from "pages/Pages/Faqs";
 import ContactUs from "pages/Pages/ContactUs";
 import { Upload } from "lucide-react";
+=======
+import UploadCard from "pages/Dashboards/UploadPage/Index";
+import Dummy from "pages/Dashboards/Dummy"
+// import History from "pages/Dashboards/History"
+
+import Login from "pages/Authentication/Login";
+import Logout from "pages/Authentication/LogOut";
+import Register from "pages/Authentication/Register";
+>>>>>>> e82bc1eb7bde4f7d090a524c6e230b9fad16e0af
 
 interface RouteObject {
   path: string;
@@ -205,6 +218,7 @@ interface RouteObject {
 
 const authProtectedRoutes: Array<RouteObject> = [
   // Dashboard
+<<<<<<< HEAD
   { path: "/", component: Analytics },
   { path: "/analytics", component: Analytics },
   { path: "/upload", component: Ecommerce },
@@ -313,7 +327,7 @@ const authProtectedRoutes: Array<RouteObject> = [
   { path: "/apps-ecommerce-product-create", component: AddNew },
   { path: "/apps-ecommerce-cart", component: ShoppingCart },
   { path: "/apps-ecommerce-checkout", component: Checkout },
-  { path: "/apps-ecommerce-orders", component: Orders },
+  { path: "/history", component: HistoryTable },
   { path: "/apps-ecommerce-order-overview", component: OrderOverview },
   { path: "/apps-ecommerce-sellers", component: Sellers },
 
@@ -419,6 +433,18 @@ const publicRoutes = [
   // Maintenance
   { path: "/pages-maintenance", component: Maintenance },
 
+=======
+  { path: "/", component: UploadCard },
+  { path: "/uploads", component: UploadCard },
+  { path: "/dashboard", component: Dummy },
+  // { path: "/history", component: History },
+  
+  // profile
+  // { path: "/user-profile", component: UserProfile },
+];
+
+const publicRoutes = [
+>>>>>>> e82bc1eb7bde4f7d090a524c6e230b9fad16e0af
 
   // authentication
   { path: "/login", component: Login },

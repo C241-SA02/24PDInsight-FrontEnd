@@ -1,7 +1,11 @@
 import axios from "axios";
 // import { api } from "../config";
 
+<<<<<<< HEAD
 axios.defaults.baseURL = "";
+=======
+axios.defaults.baseURL = "http://localhost:3001";
+>>>>>>> e82bc1eb7bde4f7d090a524c6e230b9fad16e0af
 // content type
 axios.defaults.headers.post["Content-Type"] = "application/json";
 
@@ -12,6 +16,7 @@ if (token)
   axios.defaults.headers.common["Authorization"] = "Bearer " + token;
 
 // intercepting to capture errors
+<<<<<<< HEAD
 axios.interceptors.response.use(
   function (response) {
     return response.data ? response.data : response;
@@ -35,6 +40,31 @@ axios.interceptors.response.use(
     return Promise.reject(message);
   }
 );
+=======
+// axios.interceptors.response.use(
+//   function (response) {
+//     return response.data ? response.data : response;
+//   },
+//   function (error) {
+//     // Any status codes that falls outside the range of 2xx cause this function to trigger
+//     let message;
+//     switch (error.status) {
+//       case 500:
+//         message = "Internal Server Error";
+//         break;
+//       case 401:
+//         message = "Invalid credentials";
+//         break;
+//       case 404:
+//         message = "Sorry! the data you are looking for could not be found";
+//         break;
+//       default:
+//         message = error.message || error;
+//     }
+//     return Promise.reject(message);
+//   }
+// );
+>>>>>>> e82bc1eb7bde4f7d090a524c6e230b9fad16e0af
 /**
  * Sets the default authorization
  * @param {*} token

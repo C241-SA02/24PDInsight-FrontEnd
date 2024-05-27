@@ -30,6 +30,19 @@ const basic = [
 ];
 
 const reactTableData = [
+<<<<<<< HEAD
+    { name: "Tiger Nixon", position: "System Architect", age: 61, office: "Edinburgh", startDate: "2011/04/25", salary: "$320,800" }
+];
+
+const historyTableData = [
+    { Date: "2023-07-02", category: "Sentiment Analysis", link: "DebatCapres_Anies-vs-Prabowo.wav"},
+    { Date: "2023-07-02", category: "NER", link: "https://www.youtube.com/watch?v=z0cY8nn5GyQ"},
+    { Date: "2023-07-02", category: "Topic Modelling", link: "https://www.youtube.com/watch?v=OdptPKaEMFQ"}
+]
+
+
+export { basic, reactTableData, historyTableData };
+=======
     { name: "Tiger Nixon", position: "System Architect", office: "Edinburgh", age: 61, startDate: "2011-04-25", salary: "$320,800" },
     { name: "Garrett Winters", position: "Accountant", office: "Tokyo", age: 63, startDate: "2011-07-25", salary: "$170,750" },
     { name: "Ashton Cox", position: "Junior Technical Author", office: "San Francisco", age: 66, startDate: "2009-01-12", salary: "$86,000" },
@@ -42,3 +55,4 @@ const reactTableData = [
 
 
 export { basic, reactTableData };
+>>>>>>> e82bc1eb7bde4f7d090a524c6e230b9fad16e0af

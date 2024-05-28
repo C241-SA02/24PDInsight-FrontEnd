@@ -1,9 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { column } from "./index";
 import TableContainer from "Common/TableContainer";
-import { historyTableData } from "Common/data";
+import { database, auth } from "firebaseConfig"; // Import konfigurasi firebase dan auth
+import { ref, onValue } from "firebase/database";
 import { Link } from "react-router-dom";
-import { database } from "firebaseConfig";
+import { onAuthStateChanged } from "firebase/auth";
+import { historyTableData } from "Common/data";
 
 const RowBorders = () => {
 
@@ -18,6 +20,22 @@ const RowBorders = () => {
     //         }
     //     });
     // }, []);
+
+    const [data, setData] = useState([]);
+    const [uid, setUid] = useState<string | null>(null);
+
+    useEffect(() => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
+            if (user) {
+                setUid(user.uid);
+                console.log(user.uid);
+            } else {
+                setUid(null);
+            }
+        });
+
+        return () => unsubscribe();
+    }, []);
 
     const columns: column[] = React.useMemo(
         () => [

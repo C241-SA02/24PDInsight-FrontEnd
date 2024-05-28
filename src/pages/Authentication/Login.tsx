@@ -17,7 +17,7 @@ import { Link } from "react-router-dom";
 
 const Login = (props: any) => {
 
-    document.title = "Login | Tailwick - React Admin & Dashboard Template";
+    document.title = "Login | 24PDInsight";
 
     const dispatch = useDispatch<any>();
 
@@ -38,41 +38,26 @@ const Login = (props: any) => {
         enableReinitialize: true,
 
         initialValues: {
-<<<<<<< HEAD
-            email: user.email || "admin@themesbrand.com" || '',
-            password: user.password || "123456" || '',
-=======
             email: user.email || '',
             password: user.password || '',
->>>>>>> e82bc1eb7bde4f7d090a524c6e230b9fad16e0af
         },
         validationSchema: Yup.object({
             email: Yup.string().required("Please Enter Your email"),
             password: Yup.string().required("Please Enter Your Password"),
         }),
         onSubmit: (values: any) => {
-<<<<<<< HEAD
-=======
-
->>>>>>> e82bc1eb7bde4f7d090a524c6e230b9fad16e0af
             dispatch(loginUser(values, props.router.navigate));
         }
     });
 
     const signIn = (type: any) => {
-<<<<<<< HEAD
-=======
         console.log("Signing In");
 
->>>>>>> e82bc1eb7bde4f7d090a524c6e230b9fad16e0af
         dispatch(socialLogin(type, props.router.navigate))
     }
 
     const socialResponse = (type: any) => {
-<<<<<<< HEAD
-=======
         console.log("Social Response");
->>>>>>> e82bc1eb7bde4f7d090a524c6e230b9fad16e0af
         signIn(type)
     }
 
@@ -158,14 +143,6 @@ const Login = (props: any) => {
                             <div className="mt-10">
                                 <button type="submit" className="w-full text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">Sign In</button>
                             </div>
-<<<<<<< HEAD
-
-                            <div className="relative text-center my-9 before:absolute before:top-3 before:left-0 before:right-0 before:border-t before:border-t-slate-200 dark:before:border-t-zink-500">
-                                <h5 className="inline-block px-2 py-0.5 text-sm bg-white text-slate-500 dark:bg-zink-600 dark:text-zink-200 rounded relative">Sign In with</h5>
-                            </div>
-
-                            <div className="flex flex-wrap justify-center gap-2">
-=======
                             <div className="mt-3">
                                 <button type="submit" className="w-full text-black btn bg-white border-custom-500 hover:text-white hover:bg-slate-600 hover:border-slate-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20" onClick={(e: any) => {
                                     console.log("Sign in with google clicked");
@@ -179,7 +156,6 @@ const Login = (props: any) => {
                             </div> */}
 
                             {/* <div className="flex flex-wrap justify-center gap-2">
->>>>>>> e82bc1eb7bde4f7d090a524c6e230b9fad16e0af
                                 <button type="button" className="flex items-center justify-center size-[37.5px] transition-all duration-200 ease-linear p-0 text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 active:text-white active:bg-custom-600 active:border-custom-600"
                                     onClick={(e: any) => {
                                         e.preventDefault();
@@ -201,11 +177,7 @@ const Login = (props: any) => {
                                 <button type="button" className="flex items-center justify-center size-[37.5px] transition-all duration-200 ease-linear p-0 text-white btn bg-slate-500 border-slate-500 hover:text-white hover:bg-slate-600 hover:border-slate-600 focus:text-white focus:bg-slate-600 focus:border-slate-600 active:text-white active:bg-slate-600 active:border-slate-600">
                                     <Github className="size-4"></Github>
                                 </button>
-<<<<<<< HEAD
-                            </div>
-=======
                             </div> */}
->>>>>>> e82bc1eb7bde4f7d090a524c6e230b9fad16e0af
 
                             <div className="mt-10 text-center">
                                 <p className="mb-0 text-slate-500 dark:text-zink-200">Don't have an account ? <Link to="/register" className="font-semibold underline transition-all duration-150 ease-linear text-slate-500 dark:text-zink-200 hover:text-custom-500 dark:hover:text-custom-500"> SignUp</Link> </p>

@@ -12,7 +12,6 @@ import RegisterReducer from "./auth/register/reducer";
 // userProfile
 import ProfileReducer from "./auth/profile/reducer";
 
-<<<<<<< HEAD
 // Chat
 import ChatReducer from "./chat/reducer";
 
@@ -40,13 +39,10 @@ import InvoiceReducer from "./invoice/reducer"
 // Users
 import UsersReducer from "./users/reducer";
 
-=======
->>>>>>> e82bc1eb7bde4f7d090a524c6e230b9fad16e0af
 const rootReducer = combineReducers({
     Layout: LayoutReducer,
     Login: LoginReducer,
     Register: RegisterReducer,
-<<<<<<< HEAD
     Profile: ProfileReducer,
     Chat: ChatReducer,
     Mailbox: MailboxReducer,
@@ -57,9 +53,6 @@ const rootReducer = combineReducers({
     Social: SocialReducer,
     Invoice: InvoiceReducer,
     Users: UsersReducer,
-=======
-    Profile: ProfileReducer
->>>>>>> e82bc1eb7bde4f7d090a524c6e230b9fad16e0af
 });
 
 

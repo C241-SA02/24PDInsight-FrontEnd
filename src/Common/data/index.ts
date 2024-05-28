@@ -34,11 +34,8 @@ import { InvoiceList } from "./invoice";
 import { UserListViewData, GridViewData } from "./users";
 
 // table
-<<<<<<< HEAD
 import { basic, reactTableData, historyTableData } from "./table";
-=======
-import { basic, reactTableData } from "./table";
->>>>>>> e82bc1eb7bde4f7d090a524c6e230b9fad16e0af
+
 
 // pricing 
 import { pricingData, cardData } from "./pages";
@@ -100,10 +97,7 @@ export {
     // table
     basic,
     reactTableData,
-<<<<<<< HEAD
     historyTableData,
-=======
->>>>>>> e82bc1eb7bde4f7d090a524c6e230b9fad16e0af
 
     // pricing
     pricingData,

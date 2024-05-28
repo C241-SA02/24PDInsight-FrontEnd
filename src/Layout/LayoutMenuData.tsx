@@ -1,47 +1,47 @@
-<<<<<<< HEAD
-import { Award, 
-    // CalendarDays, 
-    // CircuitBoard, 
-    // Codesandbox, 
-    // FileText, 
-    // LifeBuoy, 
-    // LocateFixed, 
-    // Mail, 
-    Map, 
-    // PackagePlus, 
-    PictureInPicture2, 
-    // PieChart, 
-    // RadioTower, 
-    // ScrollText,
-    // Share2, 
-    // ShoppingBag, 
-    // Table, 
-    // Trophy, 
-    // UserRound, 
-    History, 
-    Upload} from "lucide-react";
-=======
+
+// import { Award, 
+//     // CalendarDays, 
+//     // CircuitBoard, 
+//     // Codesandbox, 
+//     // FileText, 
+//     // LifeBuoy, 
+//     // LocateFixed, 
+//     // Mail, 
+//     Map, 
+//     // PackagePlus, 
+//     PictureInPicture2, 
+//     // PieChart, 
+//     // RadioTower, 
+//     // ScrollText,
+//     // Share2, 
+//     // ShoppingBag, 
+//     // Table, 
+//     // Trophy, 
+//     // UserRound, 
+//     History, 
+//     Upload} from "lucide-react";
+
 import { 
     MonitorDot, 
     PictureInPicture2, 
     Upload,
     History
 } from "lucide-react";
->>>>>>> e82bc1eb7bde4f7d090a524c6e230b9fad16e0af
+
 
 const menuData: any = [
     {
         label: 'menu',
         isTitle: true,
     },
+    // {
+
+    //     id: "dashboard",
+    //     label: 'Upload',
+    //     link: "/upload",
+    //     icon: <Upload />,
+    // },
     {
-<<<<<<< HEAD
-        id: "dashboard",
-        label: 'Upload',
-        link: "/upload",
-        icon: <Upload />,
-    },
-=======
         id: "uploads",
         label: 'Uploads',
         link: "/uploads",
@@ -59,7 +59,7 @@ const menuData: any = [
     //     link: "/upload",
     //     icon: <Upload />,
     // },
->>>>>>> e82bc1eb7bde4f7d090a524c6e230b9fad16e0af
+
     {
         id: "landing",
         label: 'Analytics',
@@ -67,20 +67,16 @@ const menuData: any = [
         icon: <PictureInPicture2 />,
     },
     {
-<<<<<<< HEAD
         id: 'history',
-=======
-        id: 'chat',
->>>>>>> e82bc1eb7bde4f7d090a524c6e230b9fad16e0af
+        // id: 'chat',
         label: 'History',
         icon: <History />,
         link: '/history',
     },
-<<<<<<< HEAD
     {
         id: 'email',
         label: 'Dummy',
-        icon: <Map />,
+        // icon: <Map />,
         link: '/dashboards-email'
     },
     // {
@@ -407,7 +403,7 @@ const menuData: any = [
     {
         id: 'authentication',
         label: 'Authentication',
-        icon: <Award />,
+        // icon: <Award />,
         parentId: 2,
         subItems: [
             {
@@ -1188,8 +1184,6 @@ const menuData: any = [
     //     ]
     // },
 
-=======
->>>>>>> e82bc1eb7bde4f7d090a524c6e230b9fad16e0af
 ];
 
 export { menuData };

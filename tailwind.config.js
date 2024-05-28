@@ -216,8 +216,6 @@ module.exports = {
                     900: "#070C12",
                     950: "#030507"
                 },
-<<<<<<< HEAD
-=======
                 blackpearl: {
                     50: '#f3f6fc',
                     100: '#e7eef7',
@@ -231,7 +229,6 @@ module.exports = {
                     900: '#233a57',
                     950: '#17253a',
                 }
->>>>>>> e82bc1eb7bde4f7d090a524c6e230b9fad16e0af
 
             },
             spacing: {

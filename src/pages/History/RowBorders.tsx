@@ -3,8 +3,21 @@ import { column } from "./index";
 import TableContainer from "Common/TableContainer";
 import { historyTableData } from "Common/data";
 import { Link } from "react-router-dom";
+import { database } from "firebaseConfig";
 
 const RowBorders = () => {
+
+    // const [data, setData] = useState([]);
+
+    // useEffect(() => {
+    //     const dataRef = ref(database, 'historyTableData');
+    //     onValue(dataRef, (snapshot) => {
+    //         const data = snapshot.val();
+    //         if (data) {
+    //             setData(Object.values(data));
+    //         }
+    //     });
+    // }, []);
 
     const columns: column[] = React.useMemo(
         () => [

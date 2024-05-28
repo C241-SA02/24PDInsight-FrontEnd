@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import { toast } from "react-toastify";
 
@@ -9,7 +7,6 @@ import {
     updateOrders as updateOrdersApi,
     deleteOrders as deleteOrdersApi,
 } from "../helpers/fakebackend_helper";
->>>>>>> e82bc1eb7bde4f7d090a524c6e230b9fad16e0af
 
 export {
     changeLayout,
@@ -24,8 +21,6 @@ export {
     changeLayoutTopbarColor
 } from "./layouts/thunk";
 
-<<<<<<< HEAD
-=======
 
 export const getOrders = createAsyncThunk("ecommerce/getOrders", async () => {
     try {
@@ -69,13 +64,12 @@ export const deleteOrders = createAsyncThunk("ecommerce/deleteOrders", async (ev
 });
 
 
->>>>>>> e82bc1eb7bde4f7d090a524c6e230b9fad16e0af
 export * from "./auth/login/thunk";
 
 export * from "./auth/register/thunk";
 
-<<<<<<< HEAD
 export * from "./auth/profile/thunk";
+
 export * from "./chat/thunk";
 
 export * from "./mailbox/thunk";
@@ -93,6 +87,3 @@ export * from "./social/thunk";
 export * from "./invoice/thunk";
 
 export * from "./users/thunk";
-=======
-export * from "./auth/profile/thunk";
->>>>>>> e82bc1eb7bde4f7d090a524c6e230b9fad16e0af

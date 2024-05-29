@@ -4,6 +4,8 @@ import firebase from 'firebase/compat/app'
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 
+import axios from 'axios';
+
 class FirebaseAuthBackend {
   constructor(firebaseConfig: any) {
     if (firebaseConfig) {
@@ -24,9 +26,30 @@ class FirebaseAuthBackend {
    */
   registerUser = (email: any, password: any) => {
     return new Promise((resolve, reject) => {
-      firebase
-        .auth()
-        .createUserWithEmailAndPassword(email, password)
+      firebase.auth()
+        .createUserWithEmailAndPassword(email, password).then((userCredential) => {
+          // User berhasil dibuat
+          const user = userCredential.user;
+          // Dapatkan UID
+          var uid = "";
+          if (user) {
+            const uid = user.uid;
+            try {
+              axios.post('api/adduser', {
+                uid: uid
+              })
+            } catch (error) {
+              console.error('Error to upload files: ', error);
+              throw error;
+            }
+          }
+          console.log("User ID:", uid);
+        })
+        .catch((error) => {
+          var errorCode = error.code;
+          var errorMessage = error.message;
+          console.error("Error: ", errorCode, errorMessage);
+        })
         .then(
           (user: any) => {
             resolve(firebase.auth().currentUser);
@@ -147,6 +170,20 @@ class FirebaseAuthBackend {
     try {
       const result = await firebase.auth().signInWithPopup(provider);
       const user = result.user;
+
+      if (user) {
+        const uid = user.uid;
+
+        try {
+          await axios.post('api/adduser', {
+            uid: uid
+          })
+        } catch (error) {
+          console.error('Error to upload files: ', error);
+          throw error;
+        }
+      }
+
       return user;
     } catch (error) {
       throw this._handleError(error);

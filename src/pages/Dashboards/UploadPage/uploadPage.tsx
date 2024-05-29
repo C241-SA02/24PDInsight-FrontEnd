@@ -1,11 +1,33 @@
-import React, { useState } from "react";
+import React, { useEffect , useState } from "react";
 import * as Yup from 'yup';
 import { useFormik } from "formik";
 import axios from 'axios';
+import { onAuthStateChanged } from "firebase/auth";
+import { database, auth } from "firebaseConfig"
 
 
 const UploadPage = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [uid, setUid] = useState<String | null>(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setUid(user.uid);
+      } else {
+        setUid(null);
+      }
+    });
+
+    return () => unsubscribe();
+  }, [auth]);
+
+  useEffect(() => {
+    if (uid !== null) {
+      // console.log("userid : ", uid);
+    }
+  }, [uid]);
+    
 
   const submitHandler = async (values: any) => {
     setIsLoading(true)
@@ -248,7 +270,7 @@ const UploadPage = () => {
                         >
                           {isLoading ? 'Uploading...' : 'Upload'}
                         </button>
-                  
+
                       </div>
                     </div>
                   </form>

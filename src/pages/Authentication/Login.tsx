@@ -1,5 +1,5 @@
 import React from "react";
-import { Facebook, Github, Mail, Twitter } from "lucide-react";
+// import { Facebook, Github, Mail, Twitter } from "lucide-react";
 
 // Formik validation
 import * as Yup from "yup";
@@ -51,13 +51,10 @@ const Login = (props: any) => {
     });
 
     const signIn = (type: any) => {
-        console.log("Signing In");
-
         dispatch(socialLogin(type, props.router.navigate))
     }
 
     const socialResponse = (type: any) => {
-        console.log("Social Response");
         signIn(type)
     }
 
@@ -145,7 +142,6 @@ const Login = (props: any) => {
                             </div>
                             <div className="mt-3">
                                 <button type="submit" className="w-full text-black btn bg-white border-custom-500 hover:text-white hover:bg-slate-600 hover:border-slate-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20" onClick={(e: any) => {
-                                    console.log("Sign in with google clicked");
                                     e.preventDefault();
                                     socialResponse("google")
                                 }}>Sign In With Google</button>

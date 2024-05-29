@@ -5,6 +5,7 @@ import { Action, Dispatch } from "redux";
 import { RootState } from "slices";
 import { getFirebaseBackend } from "helpers/firebase_helper";
 
+
 interface User {
     email: string;
     password: string;
@@ -67,7 +68,6 @@ export const socialLogin = (type: any, history: any) => async (dispatch: any) =>
         let response: any;
 
         if (process.env.REACT_APP_DEFAULTAUTH === "firebase") {
-            console.log("Tried Social Login");
             const fireBaseBackend = getFirebaseBackend();
             response = fireBaseBackend.socialLoginUser(type);
         }

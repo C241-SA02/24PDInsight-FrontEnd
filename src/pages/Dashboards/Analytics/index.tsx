@@ -17,6 +17,7 @@ import SentimentAnalysis from './SentimentAnalysis';
 import NamedEntityRecognition from './NamedEntityRecognition';
 import TopicModelling from './TopicModelling';
 import Summarization from './Summarization';
+import WordCloud from './WordCloud';
 
 const Analytics = () => {
 
@@ -29,6 +30,7 @@ const Analytics = () => {
         <TopicModelling></TopicModelling>
         <NamedEntityRecognition></NamedEntityRecognition>
         <Summarization></Summarization>
+        <WordCloud></WordCloud>
         {/* <Widgets /> */}
         {/* <LocationBased /> */}
         {/* <Interaction />

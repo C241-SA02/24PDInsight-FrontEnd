@@ -3,7 +3,8 @@ import * as Yup from 'yup';
 import { useFormik } from "formik";
 import axios from 'axios';
 import { onAuthStateChanged } from "firebase/auth";
-import { database, auth } from "firebaseConfig"
+import { auth } from "firebaseConfig"
+// import { upload } from "@testing-library/user-event/dist/types/utility";
 
 
 const UploadPage = () => {
@@ -33,23 +34,19 @@ const UploadPage = () => {
     setIsLoading(true)
     if (values.myFile) {
       try {
-        const uploadResponse = await axios.post(`/api/uploadfile`, {
-          file: values.myFile
+        const uploadResponse = await axios.post(`/api/upload`, {
+          file: values.myFile, 
+          uid: uid
         }, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
         })
 
-        // const responseData = uploadResponse.data
-
-        console.log('Response:', uploadResponse.data);
-        console.log('Status:', uploadResponse.status);
-        console.log('Headers:', uploadResponse.headers);
-
+        console.log('Response:', uploadResponse);
 
         setIsLoading(false)
-        // return response.data
+        return uploadResponse.data
       } catch (error) {
         console.error('Error to upload files: ', error);
         throw error;
@@ -58,8 +55,9 @@ const UploadPage = () => {
 
     if (values.link) {
       try {
-        const response = await axios.post("/api/uploadlink", {
-          link: values.link
+        const response = await axios.post("/api/upload", {
+          link: values.link,
+          uid: uid
         }, {
           headers: {
             'Content-Type': 'application/json',

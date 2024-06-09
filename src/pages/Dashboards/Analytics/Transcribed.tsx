@@ -1,10 +1,14 @@
 import React from 'react';
-import { Dropdown } from 'Common/Components/Dropdown';
-import { ChevronDown } from 'lucide-react';
-import { InteractionChart } from './Charts';
-import { Link } from 'react-router-dom';
 
 const Transcribed = () => {
+
+    const data = [
+        {
+          createdAt: "2024-06-03 22:10:11",
+          entity:"Terima kasih, dan selanjutnya kami persilakan kembali kepada calon presiden nomor 2 untuk merespon tanggapan dari kedua calon presiden lainnya. Dan waktu Anda 1 menit, Bapak dimulai dari sekarang. Benar, saya sangat setuju. Kita harus ada pendekatan dialog. Benar, ya. Dan saya juga setuju. Harus... Eh, tunggu dulu, aku mau jawab. Jadi, benar keadilan. Benar sekali, harus ada keadilan. Tetapi, saya mau mengatakan, tidak sesederhana itu, Pak Anies. Ada faktor-faktor lain, Pak Anies. Ada faktor geopolitik. Ada faktor ideologi. Inilah yang masalahnya tidak gampang. Tetapi, saya pendapat, kita harus tegakkan keadilan. Kita harus dialog. Ini masalah bangsa. Ini harus kita, semua kekuatan harus kita rangkul."
+        }
+      ];
+
     return (
         <React.Fragment>
             <div className="order-1 col-span-12 2xl:order-1 card 2xl:col-span-7">
@@ -13,9 +17,10 @@ const Transcribed = () => {
                         <h6 className="mb-3 text-15 grow">Transcribed</h6>
                     </div>
                     <div>
-                        <p>kita harus bersyukur di tahun 2020 [Angka] sampai 2030 [Angka] nanti kita akan mendapatkan bonus demografi . saat itulah sebagian besar penduduk kita ada pada usia produktif . ini kesempatan kita untuk meningkatkan produktivitas nasional . peluang untuk menuju indonesia [Entitas Geologi] emas makin terbuka lebar . tapi bapak - ibu yang saya hormat ##i , teman - teman sesama anak muda , ingat , kesempatan ini hanya datang sekali . kesempatan ini tidak akan ter ##ulang lagi . untuk itu kita harus kerja keras , kerja fokus , berani melakukan lompatan . saya uc ##apkan terima kasih kepada pak [Orang] prabowo [Orang] , yang sudah memberi saya kesempatan untuk ikut andil dalam kontes ##tasi ini . saya sangat bangga sekali saya menjadi bagian dalam perjalanan menuju indonesia [Entitas Geologi] emas [Entitas Geologi] . saya uc ##apkan terima kasih juga prof [Orang] . mah [Orang] ##fu ##d , gu ##z ##mu ##hay ##min [Orang] . saya sangat senang sekali bisa satu [Angka] panggung dengan orang - orang hebat seperti ini . senang sekali anak muda bisa bertukar pikiran dengan ketua umum partai [Organisasi] dan seorang profesor . sekali lagi terima kasih . anak - anak muda harus saling mendukung , anak - anak muda harus saling berga ##nd ##engan tangan . saya yakin indo [Orang] ins [Orang] ##yar ##mus bisa tercapai . terima kasih . wass ##alam ##u alai [Orang] ##kum wara ##h ##mat ##ullah ##i wa ##bara ##kat ##uh . selamat natal [Orang] dan tahun baru . terima kasih telah menonton !</p>
+                        {data.map((item, index) => (
+                            <p key={index}>{item.entity}</p>
+                        ))}
                     </div>
-                    
                 </div>
             </div>
         </React.Fragment>

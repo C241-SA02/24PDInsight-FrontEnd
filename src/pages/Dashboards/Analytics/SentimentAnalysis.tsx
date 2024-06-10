@@ -1,26 +1,33 @@
 import React from 'react';
-import { LocationChart } from './Charts';
-import { MoveRight } from 'lucide-react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip } from 'recharts';
 
 const SentimentAnalysis = () => {
-    return (
-        <React.Fragment>
-            <div className="order-2 col-span-6 2xl:order-1 card 2xl:col-span-5">
-                <div className="card-body">
-                    <div className="flex items-center gap-2">
-                        <h6 className="mb-3 text-15 grow">Sentiment Analysis</h6>
-                        {/* <div className="shrink-0">
-                            <button type="button" className="px-2 py-1.5 text-xs text-custom-500 btn bg-custom-100 hover:text-white hover:bg-custom-600 focus:text-white focus:bg-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:ring active:ring-custom-100 dark:bg-custom-500/20 dark:text-custom-500 dark:hover:bg-custom-500 dark:hover:text-white dark:focus:bg-custom-500 dark:focus:text-white dark:active:bg-custom-500 dark:active:text-white dark:ring-custom-400/20">
-                                View More <MoveRight className="inline-block size-4 ltr:ml-1 rlt:mr-1 rtl:-rotate-180"></MoveRight>
-                            </button>
-                        </div> */}
-                    </div>
+  const data = [
+    { name: 'Positive', value: 0.041 },
+    { name: 'Neutral', value: 0.651 },
+    { name: 'Negative', value: 0.308 },
+  ];
 
-                    {/* <LocationChart chartId="responseTimes" data-chart-colors='["bg-red-500"]' /> */}
-                </div>
-            </div>
-        </React.Fragment>
-    );
+  return (
+    <React.Fragment>
+      <div className="order-2 col-span-6 2xl:order-1 card 2xl:col-span-5">
+        <div className="card-body">
+          <div className="flex items-center gap-2">
+            <h6 className="mb-3 text-15 grow">Sentiment Analysis</h6>
+          </div>
+          <div>
+            <BarChart width={400} height={300} data={data}>
+              <XAxis dataKey="name" />
+              <YAxis />
+              <CartesianGrid stroke="#ccc" />
+              <Tooltip />
+              <Bar dataKey="value" fill="#8884d8" />
+            </BarChart>
+          </div>
+        </div>
+      </div>
+    </React.Fragment>
+  );
 };
 
 export default SentimentAnalysis;

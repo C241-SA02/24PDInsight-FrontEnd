@@ -1,10 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import cloud from 'd3-cloud';
-// import { Dropdown } from 'Common/Components/Dropdown';
-// import { ChevronDown } from 'lucide-react';
-// import { InteractionChart } from './Charts';
-// import { Link } from 'react-router-dom';
 
 interface OriginalWord {
   size: string;
@@ -47,22 +43,22 @@ const WordCloudComponent: React.FC<WordCloudComponentProps> = ({ data }) => {
 
   useEffect(() => {
     const margin = { top: 10, right: 10, bottom: 10, left: 10 };
-    const width = 300 - margin.left - margin.right; // Adjusted width
-    const height = 200 - margin.top - margin.bottom; // Adjusted height
+    const width = 600 - margin.left - margin.right; // Adjusted width
+    const height = 400 - margin.top - margin.bottom; // Adjusted height
 
     if (d3Container.current && data) {
       const svg = d3.select(d3Container.current)
         .attr('width', width + margin.left + margin.right)
         .attr('height', height + margin.top + margin.bottom)
         .append('g')
-        .attr('transform', `translate(${width / 2},${height / 2})`); // Centering the SVG
+        .attr('transform', `translate(${(width + margin.left + margin.right) / 2},${(height + margin.top + margin.bottom) / 2})`); // Centering the SVG
 
       const layout = cloud<ConvertedWord>()
         .size([width, height])
         .words(data)
         .padding(5)
         .rotate(() => (Math.random() > 0.5 ? 90 : 0))
-        .fontSize(d => d.size)
+        .fontSize(d => d.size * 8) // Increased font size
         .on('end', draw);
 
       layout.start();

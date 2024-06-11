@@ -7,6 +7,8 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  Cell,
+  Rectangle
 } from "recharts";
 
 interface TopicModellingProps {
@@ -21,6 +23,21 @@ const TopicModelling: React.FC<TopicModellingProps> = ({ data }) => {
   const dataTopic0 = data ? data.filter(item => item.topic_id === 0) : [];
   const dataTopic1 = data ? data.filter(item => item.topic_id === 1) : [];
 
+  const renderCustomizedBar = (props: any) => {
+    const { fill, x, y, width, height } = props;
+    const radius = 10; // Set the radius for rounded corners
+    return (
+      <Rectangle
+        x={x as number}
+        y={y as number}
+        width={width as number}
+        height={height as number}
+        fill={fill}
+        radius={[radius, radius, radius, radius]}
+      />
+    );
+  };
+
   return (
     <React.Fragment>
       <div className="order-5 col-span-6 2xl:order-1 card 2xl:col-span-6">
@@ -29,7 +46,7 @@ const TopicModelling: React.FC<TopicModellingProps> = ({ data }) => {
             <h6 className="mb-3 text-15 grow">Topic Modelling - Topic 0</h6>
           </div>
           <div>
-            {isLoading ? ( // Tampilkan pesan loading jika isLoading true
+            {isLoading ? (
               <p>Loading...</p>
             ) : (
               <BarChart
@@ -43,12 +60,15 @@ const TopicModelling: React.FC<TopicModellingProps> = ({ data }) => {
                   bottom: 5,
                 }}
               >
-                <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="word" />
-                <YAxis />
+                <YAxis domain={[0, 0.1]} />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="importance" fill="#8884d8" />
+                <Bar dataKey="importance" shape={renderCustomizedBar}>
+                  {dataTopic0.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill="#8884d8" />
+                  ))}
+                </Bar>
               </BarChart>
             )}
           </div>
@@ -61,7 +81,7 @@ const TopicModelling: React.FC<TopicModellingProps> = ({ data }) => {
             <h6 className="mb-3 text-15 grow">Topic Modelling - Topic 1</h6>
           </div>
           <div>
-            {isLoading ? ( // Tampilkan pesan loading jika isLoading true
+            {isLoading ? (
               <p>Loading...</p>
             ) : (
               <BarChart
@@ -75,12 +95,15 @@ const TopicModelling: React.FC<TopicModellingProps> = ({ data }) => {
                   bottom: 5,
                 }}
               >
-                <CartesianGrid strokeDasharray="3 3" />
                 <XAxis dataKey="word" />
-                <YAxis />
+                <YAxis domain={[0, 0.1]} />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="importance" fill="#82ca9d" />
+                <Bar dataKey="importance" shape={renderCustomizedBar}>
+                  {dataTopic1.map((entry, index) => (
+                    <Cell key={`cell-${index}`} fill="#82ca9d" />
+                  ))}
+                </Bar>
               </BarChart>
             )}
           </div>

@@ -1,12 +1,22 @@
 import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell, Rectangle, BarProps } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell, Rectangle } from 'recharts';
 
-const SentimentAnalysis = () => {
-  const data = [
-    { name: 'Positive', value: 0.041 },
-    { name: 'Neutral', value: 0.651 },
-    { name: 'Negative', value: 0.308 },
-  ];
+interface SentimentData {
+  name: string;
+  value: number;
+}
+
+const SentimentAnalysis: React.FC<{ data: string | null }> = ({ data }) => {
+  const mapData = (data: any): SentimentData[] => {
+    return data.map((item: any) => ({
+      name: capitalizeFirstLetter(item.label),
+      value: item.score
+    }));
+  };
+
+  const capitalizeFirstLetter = (str: string) => {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  };
 
   const renderCustomizedBar = (props: any) => {
     const { fill, x, y, width, height } = props;
@@ -35,14 +45,13 @@ const SentimentAnalysis = () => {
               layout="vertical"
               width={400}
               height={300}
-              data={data}
+              data={data ? mapData(data) : []}
             >
-              
               <XAxis type="number" />
               <YAxis type="category" dataKey="name" />
               <Tooltip />
               <Bar dataKey="value" shape={renderCustomizedBar}>
-                {data.map((entry, index) => {
+                {data && mapData(data).map((entry, index) => {
                   let color;
                   if (entry.name === 'Positive') color = '#00C49F'; // Green
                   if (entry.name === 'Neutral') color = '#FFBB28'; // Yellow

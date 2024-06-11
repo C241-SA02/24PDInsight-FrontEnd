@@ -1,84 +1,71 @@
 import React, { useEffect, useState } from 'react';
 import BreadCrumb from 'Common/BreadCrumb';
-// import Widgets from './Widgets';
-// import LocationBased from './LocationBased';
-// import Interaction from './Interaction';
-// import UserDevice from './UserDevice';
-// import Satisfaction from './Satisfaction';
-// import DailyVisit from './DailyVisit';
-// import Reports from './Reports';
-// import MonthlyCampaign from './MonthlyCampaign';
-// import Subscription from './Subscription';
-// import TrafficSource from './TrafficSource';
-// import ProductsStatistics from './ProductsStatistics';
-
+import { useLocation } from 'react-router-dom';
 import Transcribed from './Transcribed';
 import SentimentAnalysis from './SentimentAnalysis';
 import NamedEntityRecognition from './NamedEntityRecognition';
 import TopicModelling from './TopicModelling';
 import Summarization from './Summarization';
 import WordCloud from './WordCloud';
-
 import axios from 'axios';
 
-interface Props {
-  uid: string;
-  transcribeid: string;
-}
+interface Props {}
 
-const Analytics:React.FC<Props>  = (
-  // {uid , transcribeid}
-  ) => {
-    const [data, setData] = useState<any | null>(null);
-    const [transcribe, setTranscribe] = useState<any | null>(null);
-    const [error, setError] = useState<string | null>(null);
-    const uid = "DummyID"
-    const transcribeid = "Testing"
+const Analytics: React.FC<Props> = () => {
+  const location = useLocation();
+  const { uid, transcribeid } = location.state || {};
+  const [data, setData] = useState<any | null>(null);
+  const [error, setError] = useState<string | null>(null);
+  const [isFetching, setIsFetching] = useState<boolean>(true);
 
-      useEffect(() => {
-      const fetchData = async () => {
-          try {
-              const response = await axios.get('/api/getdata', {
-                  params: {
-                      uid: "DummyID",
-                      transcribeid: "Testing",
-                  },
-              });
-              console.log('API Response:', response);
-              setData(response.data);
-          } catch (error) {
-              setError('Error fetching data');
-              console.error('Error fetching data:', error);
-          }
-      };
-      fetchData();
-  }, [uid, transcribeid]);
+  useEffect(() => {
+    const fetchData = async () => {
+      console.log(uid);
+      console.log(transcribeid);
 
+      try {
+        const response = await axios.get('/api/getdata', {
+          params: {
+            uid: uid,
+            transcribeid: transcribeid,
+          },
+        });
+        console.log('API Response:', response);
+        setData(response.data);
+      } catch (error) {
+        setError('Error fetching data');
+        console.error('Error fetching data:', error);
+      }
+    };
 
-  // Data for Named Entity Recognition
-  const nerAnalysis = `terima kasih , dan selanjutnya kami persi ##lak ##an kembali kepada calon presiden nomor 2 [Angka] untuk merespon tanggapan dari kedua [Angka] calon presiden lainnya . dan waktu anda 1 [Jumlah] menit [Jumlah] , bapak dimulai dari sekarang . benar , saya sangat setuju . kita harus ada pendekatan dialog . benar , ya . dan saya juga setuju . harus . . . eh , tunggu dulu , aku mau jawab . jadi , benar keadilan . benar sekali , harus ada keadilan . tetapi , saya mau mengatakan , tidak sese ##der ##hana itu , pak anies [Orang] . ada faktor - faktor lain , pak [Orang] anies [Orang] . ada faktor geop ##olitik . ada faktor ideologi . inilah yang masalahnya tidak gamp ##ang . tetapi , saya pendapat , kita harus tegak ##kan keadilan . kita harus dialog . ini masalah bangsa . ini harus kita , semua kekuatan harus kita rangk ##ul .`;
+    if (isFetching) {
+      const intervalId = setInterval(() => {
+        fetchData();
+      }, 2000);
+
+      fetchData(); // Initial fetch
+
+      return () => clearInterval(intervalId); // Cleanup interval on component unmount
+    }
+  }, [uid, transcribeid, isFetching]);
+
+  useEffect(() => {
+    if (data && Object.keys(data).length >= 8) {
+      setIsFetching(false); // Stop fetching when the condition is met
+      console.log("Data fetching completed.");
+    }
+  }, [data]);
 
   return (
     <React.Fragment>
-      <BreadCrumb title='Analytics' pageTitle='Analytics'/>
+      <BreadCrumb title='Analytics' pageTitle='Analytics' />
       <div className="grid grid-cols-12 gap-x-5">
-        <Summarization data={data ? data.summarize : null}></Summarization>
-        <Transcribed data={data ? data.transcribe : null}></Transcribed>
-        <SentimentAnalysis data={data ? data.sentiment : null}></SentimentAnalysis>
-        <WordCloud data={data ? data.wordcloud : null}></WordCloud>
-        <TopicModelling data={data ? data.topicModel : null}></TopicModelling>
-        <NamedEntityRecognition nerAnalysis={data ? data.entity : null}></NamedEntityRecognition>
-        {/* <Widgets /> */}
-        {/* <LocationBased /> */}
-        {/* <Interaction />
-        <UserDevice />
-        <Satisfaction />
-        <DailyVisit />
-        <ProductsStatistics />
-        <Reports />
-        <MonthlyCampaign />
-        <Subscription />
-        <TrafficSource />  */}
+        <Summarization data={data ? data.summarize : null} />
+        <Transcribed data={data ? data.transcribe : null} />
+        <SentimentAnalysis data={data ? data.sentiment : null} />
+        <WordCloud data={data ? data.wordcloud : null} />
+        <TopicModelling data={data ? data.topicModel : null} />
+        <NamedEntityRecognition nerAnalysis={data ? data.entity : null} />
       </div>
     </React.Fragment>
   );

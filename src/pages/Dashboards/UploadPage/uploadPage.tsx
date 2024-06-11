@@ -4,15 +4,15 @@ import { useFormik } from "formik";
 import axios from 'axios';
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "firebaseConfig"
-// import { upload } from "@testing-library/user-event/dist/types/utility";
-
+import { useNavigate } from 'react-router-dom';
 
 const UploadPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [uid, setUid] = useState<String | null>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
+    const uid = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUid(user.uid);
       } else {
@@ -20,7 +20,7 @@ const UploadPage = () => {
       }
     });
 
-    return () => unsubscribe();
+    return () => uid();
   }, [auth]);
 
   useEffect(() => {
@@ -30,25 +30,26 @@ const UploadPage = () => {
   }, [uid]);
     
 
-  const submitHandler = async (values: any) => {
-    setIsLoading(true)
+  const submitHandler = async (values:any) => {
+    setIsLoading(true);
+    let responseData;
+
     if (values.myFile) {
       try {
         const uploadResponse = await axios.post(`/api/upload`, {
-          file: values.myFile, 
+          file: values.myFile,
           uid: uid
         }, {
           headers: {
             'Content-Type': 'multipart/form-data'
           }
-        })
+        });
 
         console.log('Response:', uploadResponse);
-
-        setIsLoading(false)
-        return uploadResponse.data
+        responseData = uploadResponse.data;
       } catch (error) {
         console.error('Error to upload files: ', error);
+        setIsLoading(false);
         throw error;
       }
     }
@@ -65,13 +66,24 @@ const UploadPage = () => {
         });
 
         console.log('Response:', response.data);
-        return response.data;
+        responseData = response.data;
       } catch (error) {
         console.error('Error posting link:', error);
+        setIsLoading(false);
         throw error;
       }
     }
-  }
+
+    setIsLoading(false);
+
+    // Redirect to "/analytics" with uid and response data
+    navigate('/analytics', {
+      state: {
+        uid: uid,
+        transcribeid: responseData.docid
+      }
+    });
+  };
 
   const handleChangeLink = (event: any) => {
     const { target } = event

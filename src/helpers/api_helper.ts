@@ -1,7 +1,7 @@
 import axios from "axios";
 // import { api } from "../config";
 
-axios.defaults.baseURL = "http://localhost:3001";
+axios.defaults.baseURL = "https://t7wnrhjd-8080.asse.devtunnels.ms/";
 // content type
 axios.defaults.headers.post["Content-Type"] = "application/json";
 

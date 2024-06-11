@@ -62,12 +62,12 @@ const Analytics:React.FC<Props>  = (
     <React.Fragment>
       <BreadCrumb title='Analytics' pageTitle='Analytics'/>
       <div className="grid grid-cols-12 gap-x-5">
+        <Summarization data={data ? data.summarize : null}></Summarization>
         <Transcribed data={data ? data.transcribe : null}></Transcribed>
         <SentimentAnalysis data={data ? data.sentiment : null}></SentimentAnalysis>
+        <WordCloud data={data ? data.wordcloud : null}></WordCloud>
         <TopicModelling data={data ? data.topicModel : null}></TopicModelling>
         <NamedEntityRecognition nerAnalysis={data ? data.entity : null}></NamedEntityRecognition>
-        <Summarization data={data ? data.summarize : null}></Summarization>
-        <WordCloud data={data ? data.wordcloud : null}></WordCloud>
         {/* <Widgets /> */}
         {/* <LocationBased /> */}
         {/* <Interaction />

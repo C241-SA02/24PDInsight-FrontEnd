@@ -5,7 +5,7 @@ const Transcribed: React.FC<{ data: string | null }> = ({ data }) => {
 
     return (
         <React.Fragment>
-            <div className="order-1 col-span-12 2xl:order-1 card 2xl:col-span-7">
+            <div className="order-2 col-span-12 2xl:order-1 card 2xl:col-span-12">
                 <div className="card-body">
                     <div className="flex items-center gap-2">
                         <h6 className="mb-3 text-15 grow">Transcribed</h6>
@@ -25,3 +25,4 @@ const Transcribed: React.FC<{ data: string | null }> = ({ data }) => {
 };
 
 export default Transcribed;
+

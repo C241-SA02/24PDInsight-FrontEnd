@@ -28,12 +28,12 @@ const Analytics = () => {
     <React.Fragment>
       <BreadCrumb title='Analytics' pageTitle='Analytics'/>
       <div className="grid grid-cols-12 gap-x-5">
+        <Summarization></Summarization>
         <Transcribed></Transcribed>
         <SentimentAnalysis></SentimentAnalysis>
+        <WordCloud></WordCloud>
         <TopicModelling></TopicModelling>
         <NamedEntityRecognition nerAnalysis={nerAnalysis}></NamedEntityRecognition>
-        <Summarization></Summarization>
-        <WordCloud></WordCloud>
         {/* <Widgets /> */}
         {/* <LocationBased /> */}
         {/* <Interaction />

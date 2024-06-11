@@ -70,7 +70,7 @@ const WordCloudComponent: React.FC = () => {
 const WordCloud: React.FC = () => {
   return (
     <React.Fragment>
-      <div className="order-7 col-span-6 2xl:order-1 card 2xl:col-span-7">
+      <div className="order-3 col-span-6 2xl:order-1 card 2xl:col-span-6">
         <div className="card-body">
           <div className="flex items-center gap-2">
             <h6 className="mb-3 text-15 grow">WordCloud</h6>

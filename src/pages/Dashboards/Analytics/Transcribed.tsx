@@ -1,13 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 
-const Transcribed = () => {
-
-    const data = [
-        {
-          createdAt: "2024-06-03 22:10:11",
-          entity:"Terima kasih, dan selanjutnya kami persilakan kembali kepada calon presiden nomor 2 untuk merespon tanggapan dari kedua calon presiden lainnya. Dan waktu Anda 1 menit, Bapak dimulai dari sekarang. Benar, saya sangat setuju. Kita harus ada pendekatan dialog. Benar, ya. Dan saya juga setuju. Harus... Eh, tunggu dulu, aku mau jawab. Jadi, benar keadilan. Benar sekali, harus ada keadilan. Tetapi, saya mau mengatakan, tidak sesederhana itu, Pak Anies. Ada faktor-faktor lain, Pak Anies. Ada faktor geopolitik. Ada faktor ideologi. Inilah yang masalahnya tidak gampang. Tetapi, saya pendapat, kita harus tegakkan keadilan. Kita harus dialog. Ini masalah bangsa. Ini harus kita, semua kekuatan harus kita rangkul."
-        }
-      ];
+const Transcribed: React.FC<{ data: string | null }> = ({ data }) => {
+    const [error] = useState<string | null>(null);
 
     return (
         <React.Fragment>
@@ -17,9 +11,12 @@ const Transcribed = () => {
                         <h6 className="mb-3 text-15 grow">Transcribed</h6>
                     </div>
                     <div>
-                        {data.map((item, index) => (
-                            <p key={index}>{item.entity}</p>
-                        ))}
+                        {error && <p className="text-red-500">{error}</p>}
+                        {data ? (
+                            <p>{data}</p>
+                        ) : (
+                            <p>Loading...</p>
+                        )}
                     </div>
                 </div>
             </div>

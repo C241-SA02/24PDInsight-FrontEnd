@@ -17,12 +17,15 @@ const Entity = styled.span<{ type: string }>`
 `;
 
 interface NamedEntityRecognitionProps {
-    nerAnalysis: string;
+    nerAnalysis: string | null; // Updated to accept null value
 }
 
 const NamedEntityRecognition: React.FC<NamedEntityRecognitionProps> = ({ nerAnalysis }) => {
     // Function to parse NER analysis and apply styles
     const parseNER = (nerAnalysis: string) => {
+        // Check if nerAnalysis is null
+        if (!nerAnalysis) return [];
+
         // Remove tokenization markers ## and two spaces before them
         const cleanText = nerAnalysis.replace(/ {0,2}##/g, '');
 
@@ -56,7 +59,7 @@ const NamedEntityRecognition: React.FC<NamedEntityRecognitionProps> = ({ nerAnal
         return parts;
     };
 
-    const parsedEntities = parseNER(nerAnalysis);
+    const parsedEntities = parseNER(nerAnalysis || ''); // Provide empty string if nerAnalysis is null
 
     return (
         <React.Fragment>

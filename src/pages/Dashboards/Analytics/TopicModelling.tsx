@@ -9,28 +9,13 @@ import {
   Legend,
 } from "recharts";
 
-const TopicModelling = () => {
-  const data = [
-    {
-      importance: 0.04,
-      topic_id: 1,
-      word: "faktor",
-      word_count: 8,
-    },
-    {
-      importance: 0.077,
-      topic_id: 0,
-      word: "adil",
-      word_count: 0,
-    },
-    {
-      importance: 0.090,
-      topic_id: 0,
-      word: "tes",
-      word_count: 0,
-    },
+interface TopicModellingProps {
+  data: any[] | null;
+}
 
-  ];
+const TopicModelling: React.FC<TopicModellingProps> = ({ data }) => {
+  // Tentukan variabel isLoading
+  const isLoading = data === null;
 
   return (
     <React.Fragment>
@@ -40,24 +25,28 @@ const TopicModelling = () => {
             <h6 className="mb-3 text-15 grow">Topic Modelling</h6>
           </div>
           <div>
-            <BarChart
-              width={500}
-              height={300}
-              data={data}
-              margin={{
-                top: 5,
-                right: 30,
-                left: 20,
-                bottom: 5,
-              }}
-            >
-              <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="word" />
-              <YAxis />
-              <Tooltip />
-              <Legend />
-              <Bar dataKey="importance" fill="#8884d8" />
-            </BarChart>
+            {isLoading ? ( // Tampilkan pesan loading jika isLoading true
+              <p>Loading...</p>
+            ) : (
+              <BarChart
+                width={500}
+                height={300}
+                data={data}
+                margin={{
+                  top: 5,
+                  right: 30,
+                  left: 20,
+                  bottom: 5,
+                }}
+              >
+                <CartesianGrid strokeDasharray="3 3" />
+                <XAxis dataKey="word" />
+                <YAxis />
+                <Tooltip />
+                <Legend />
+                <Bar dataKey="importance" fill="#8884d8" />
+              </BarChart>
+            )}
           </div>
         </div>
       </div>

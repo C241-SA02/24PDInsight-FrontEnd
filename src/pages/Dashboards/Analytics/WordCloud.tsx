@@ -1,17 +1,33 @@
 import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import cloud from 'd3-cloud';
-import { Dropdown } from 'Common/Components/Dropdown';
-import { ChevronDown } from 'lucide-react';
-import { InteractionChart } from './Charts';
-import { Link } from 'react-router-dom';
+// import { Dropdown } from 'Common/Components/Dropdown';
+// import { ChevronDown } from 'lucide-react';
+// import { InteractionChart } from './Charts';
+// import { Link } from 'react-router-dom';
 
-interface Word {
+interface OriginalWord {
+  size: string;
+  word: string;
+}
+
+interface ConvertedWord {
   text: string;
   size: number;
 }
 
-const WordCloudComponent: React.FC = () => {
+const convertToWordCloudFormat = (originalData: OriginalWord[]): ConvertedWord[] => {
+  return originalData.map((wordData) => ({
+    text: wordData.word,
+    size: parseInt(wordData.size)
+  }));
+};
+
+interface WordCloudComponentProps {
+  data: ConvertedWord[] | null;
+}
+
+const WordCloudComponent: React.FC<WordCloudComponentProps> = ({ data }) => {
   const d3Container = useRef<SVGSVGElement | null>(null);
 
   const draw = (words: cloud.Word[]) => {
@@ -30,29 +46,20 @@ const WordCloudComponent: React.FC = () => {
   };
 
   useEffect(() => {
-    const myWords: Word[] = [
-      { text: 'Running', size: 10 },
-      { text: 'Surfing', size: 20 },
-      { text: 'Climbing', size: 50 },
-      { text: 'Kiting', size: 30 },
-      { text: 'Sailing', size: 20 },
-      { text: 'Snowboarding', size: 60 }
-    ];
-
     const margin = { top: 10, right: 10, bottom: 10, left: 10 };
     const width = 300 - margin.left - margin.right; // Adjusted width
     const height = 200 - margin.top - margin.bottom; // Adjusted height
 
-    if (d3Container.current) {
+    if (d3Container.current && data) {
       const svg = d3.select(d3Container.current)
         .attr('width', width + margin.left + margin.right)
         .attr('height', height + margin.top + margin.bottom)
         .append('g')
         .attr('transform', `translate(${width / 2},${height / 2})`); // Centering the SVG
 
-      const layout = cloud<Word>()
+      const layout = cloud<ConvertedWord>()
         .size([width, height])
-        .words(myWords)
+        .words(data)
         .padding(5)
         .rotate(() => (Math.random() > 0.5 ? 90 : 0))
         .fontSize(d => d.size)
@@ -60,14 +67,16 @@ const WordCloudComponent: React.FC = () => {
 
       layout.start();
     }
-  }, []);
+  }, [data]);
 
   return (
     <svg ref={d3Container}></svg>
   );
 };
 
-const WordCloud: React.FC = () => {
+const WordCloud: React.FC<{ data: OriginalWord[] | null }> = ({ data }) => {
+  const convertedData = data ? convertToWordCloudFormat(data) : null;
+
   return (
     <React.Fragment>
       <div className="order-7 col-span-6 2xl:order-1 card 2xl:col-span-7">
@@ -77,7 +86,7 @@ const WordCloud: React.FC = () => {
             {/* Add additional controls or elements here if needed */}
           </div>
           <div className="overflow-hidden"> {/* Ensures the card doesn't overflow */}
-            <WordCloudComponent />
+            <WordCloudComponent data={convertedData} />
           </div>
         </div>
       </div>

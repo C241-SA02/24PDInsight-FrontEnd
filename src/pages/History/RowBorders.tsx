@@ -107,7 +107,7 @@ const RowBorders = () => {
                         isGlobalFilter={true}
                         columns={(columns || [])}
                         data={(data || [])}
-                        customPageSize={10}
+                        customPageSize={5}
                         divclassName="my-2 col-span-12 overflow-x-auto lg:col-span-12"
                         tableclassName="dataTable w-full text-sm align-middle whitespace-nowrap no-footer"
                         theadclassName="border-b border-slate-200 dark:border-zink-500"

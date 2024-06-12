@@ -60,12 +60,12 @@ const menuData: any = [
     //     icon: <Upload />,
     // },
 
-    {
-        id: "landing",
-        label: 'Analytics',
-        link: "/analytics",
-        icon: <PictureInPicture2 />,
-    },
+    // {
+    //     id: "landing",
+    //     label: 'Analytics',
+    //     link: "/analytics",
+    //     icon: <PictureInPicture2 />,
+    // },
     {
         id: 'history',
         // id: 'chat',

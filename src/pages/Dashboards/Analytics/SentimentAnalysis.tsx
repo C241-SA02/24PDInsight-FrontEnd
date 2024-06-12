@@ -77,7 +77,6 @@ const SentimentAnalysis: React.FC<{ data: string | null }> = ({ data }) => {
                 />
               </div>
             )}
-
           </div>
         </div>
       </div>

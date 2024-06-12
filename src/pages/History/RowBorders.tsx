@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { column } from "./index";
 import TableContainer from "Common/TableContainer";
-import { database, auth } from "firebaseConfig"; // Import konfigurasi firebase dan auth
+import { database, auth } from "firebaseConfig";
 import { ref, onValue } from "firebase/database";
 import { Link, useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
 import axios from "axios";
+import { ThreeDots } from "react-loader-spinner";
 
 const RowBorders = () => {
     const [data, setData] = useState([]);
     const [uid, setUid] = useState<string | null>(null);
+    const [loading, setLoading] = useState<boolean>(true);
     const [error, setError] = useState<string | null>(null);
-    const navigate = useNavigate();  // Initialize the useNavigate hook
+    const navigate = useNavigate();
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUid(user.uid);
-                console.log(user.uid);
             } else {
                 setUid(null);
             }
@@ -28,29 +29,29 @@ const RowBorders = () => {
 
     useEffect(() => {
         const fetchData = async () => {
-          console.log(uid);
-    
-          try {
-            const response = await axios.get('/api/gethistory', {
-              params: {
-                uid: uid,
-              },
-            });
-            console.log('API Response:', response);
-            setData(response.data);  // Assuming response.data.data contains the array of documents
-          } catch (error) {
-            setError('Error fetching data');
-            console.error('Error fetching data:', error);
-          }
+            setLoading(true);
+            try {
+                const response = await axios.get('/api/gethistory', {
+                    params: {
+                        uid: uid,
+                    },
+                });
+                setData(response.data);
+                setLoading(false);
+            } catch (error) {
+                setError('Error fetching data');
+                console.error('Error fetching data:', error);
+                setLoading(false);
+            }
         };
 
         if (uid) {
             fetchData();
         }
-      }, [uid]);
+    }, [uid]);
 
-    const handleDetailClick = (category:any) => {
-        const docid = category;  // Assuming category contains the docid
+    const handleDetailClick = (category: any) => {
+        const docid = category;
         navigate('/analytics', {
             state: {
                 uid: uid,
@@ -85,8 +86,8 @@ const RowBorders = () => {
                 enableColumnFilter: false,
                 enableSorting: true,
                 cell: (cell: any) => (
-                    <button 
-                        onClick={() => handleDetailClick(cell.row.original.Source)} 
+                    <button
+                        onClick={() => handleDetailClick(cell.row.original.Source)}
                         className="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20"
                     >
                         <span className="align-middle">Detail</span>
@@ -100,22 +101,37 @@ const RowBorders = () => {
     return (
         <React.Fragment>
             <div className="card">
-                <div className="card-body">
-                    <TableContainer
-                        isPagination={true}
-                        isSelect={true}
-                        isGlobalFilter={true}
-                        columns={(columns || [])}
-                        data={(data || [])}
-                        customPageSize={5}
-                        divclassName="my-2 col-span-12 overflow-x-auto lg:col-span-12"
-                        tableclassName="dataTable w-full text-sm align-middle whitespace-nowrap no-footer"
-                        theadclassName="border-b border-slate-200 dark:border-zink-500"
-                        tbodyclassName="divide-y divide-slate-200 dark:divide-zink-500"
-                        thclassName="p-3 group-[.bordered]:border group-[.bordered]:border-slate-200 group-[.bordered]:dark:border-zink-500 sorting px-3 py-4 text-slate-900 bg-slate-200/50 font-semibold text-left dark:text-zink-50 dark:bg-zink-600 dark:group-[.bordered]:border-zink-500 sorting_asc"
-                        tdclassName="p-3 group-[.bordered]:border group-[.bordered]:border-slate-200 group-[.bordered]:dark:border-zink-500"
-                        PaginationClassName="flex flex-col items-center mt-5 md:flex-row"
-                    />
+                <div className="card-body" style={{ position: "relative" }}>
+                    {loading ? (
+                        <div style={{ position: "absolute", top: "50%", left: "50%", transform: "translate(-50%, -50%)" }}>
+                            <ThreeDots
+                                visible={true}
+                                height="80"
+                                width="80"
+                                color="#66a1ff"
+                                radius="9"
+                                ariaLabel="three-dots-loading"
+                                wrapperStyle={{}}
+                                wrapperClass=""
+                            />
+                        </div>
+                    ) : (
+                        <TableContainer
+                            isPagination={true}
+                            isSelect={true}
+                            isGlobalFilter={true}
+                            columns={(columns || [])}
+                            data={(data || [])}
+                            customPageSize={5}
+                            divclassName="my-2 col-span-12 overflow-x-auto lg:col-span-12"
+                            tableclassName="dataTable w-full text-sm align-middle whitespace-nowrap no-footer"
+                            theadclassName="border-b border-slate-200 dark:border-zink-500"
+                            tbodyclassName="divide-y divide-slate-200 dark:divide-zink-500"
+                            thclassName="p-3 group-[.bordered]:border group-[.bordered]:border-slate-200 group-[.bordered]:dark:border-zink-500 sorting px-3 py-4 text-slate-900 bg-slate-200/50 font-semibold text-left dark:text-zink-50 dark:bg-zink-600 dark:group-[.bordered]:border-zink-500 sorting_asc"
+                            tdclassName="p-3 group-[.bordered]:border group-[.bordered]:border-slate-200 group-[.bordered]:dark:border-zink-500"
+                            PaginationClassName="flex flex-col items-center mt-5 md:flex-row"
+                        />
+                    )}
                 </div>
             </div>
         </React.Fragment>

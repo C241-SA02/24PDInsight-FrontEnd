@@ -3,26 +3,15 @@ import { column } from "./index";
 import TableContainer from "Common/TableContainer";
 import { database, auth } from "firebaseConfig"; // Import konfigurasi firebase dan auth
 import { ref, onValue } from "firebase/database";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { onAuthStateChanged } from "firebase/auth";
-import { historyTableData } from "Common/data";
+import axios from "axios";
 
 const RowBorders = () => {
-
-    // const [data, setData] = useState([]);
-
-    // useEffect(() => {
-    //     const dataRef = ref(database, 'historyTableData');
-    //     onValue(dataRef, (snapshot) => {
-    //         const data = snapshot.val();
-    //         if (data) {
-    //             setData(Object.values(data));
-    //         }
-    //     });
-    // }, []);
-
     const [data, setData] = useState([]);
     const [uid, setUid] = useState<string | null>(null);
+    const [error, setError] = useState<string | null>(null);
+    const navigate = useNavigate();  // Initialize the useNavigate hook
 
     useEffect(() => {
         const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -37,6 +26,39 @@ const RowBorders = () => {
         return () => unsubscribe();
     }, []);
 
+    useEffect(() => {
+        const fetchData = async () => {
+          console.log(uid);
+    
+          try {
+            const response = await axios.get('/api/gethistory', {
+              params: {
+                uid: uid,
+              },
+            });
+            console.log('API Response:', response);
+            setData(response.data);  // Assuming response.data.data contains the array of documents
+          } catch (error) {
+            setError('Error fetching data');
+            console.error('Error fetching data:', error);
+          }
+        };
+
+        if (uid) {
+            fetchData();
+        }
+      }, [uid]);
+
+    const handleDetailClick = (category:any) => {
+        const docid = category;  // Assuming category contains the docid
+        navigate('/analytics', {
+            state: {
+                uid: uid,
+                transcribeid: docid
+            }
+        });
+    };
+
     const columns: column[] = React.useMemo(
         () => [
             {
@@ -47,7 +69,7 @@ const RowBorders = () => {
             },
             {
                 header: 'Category',
-                accessorKey: 'category',
+                accessorKey: 'Source',
                 enableColumnFilter: false,
                 enableSorting: true,
             },
@@ -62,14 +84,17 @@ const RowBorders = () => {
                 accessorKey: "detail",
                 enableColumnFilter: false,
                 enableSorting: true,
-                 cell: (cell: any) => (
-                    <Link to="#!" data-modal-target="addOrderModal" type="button" className="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20">
-                                         <span className="align-middle">Detail</span>
-                                    </Link>
-                 )
+                cell: (cell: any) => (
+                    <button 
+                        onClick={() => handleDetailClick(cell.row.original.Source)} 
+                        className="text-white btn bg-custom-500 border-custom-500 hover:text-white hover:bg-custom-600 hover:border-custom-600 focus:text-white focus:bg-custom-600 focus:border-custom-600 focus:ring focus:ring-custom-100 active:text-white active:bg-custom-600 active:border-custom-600 active:ring active:ring-custom-100 dark:ring-custom-400/20"
+                    >
+                        <span className="align-middle">Detail</span>
+                    </button>
+                )
             }
         ],
-        []
+        [uid]
     );
 
     return (
@@ -81,7 +106,7 @@ const RowBorders = () => {
                         isSelect={true}
                         isGlobalFilter={true}
                         columns={(columns || [])}
-                        data={(historyTableData || [])}
+                        data={(data || [])}
                         customPageSize={10}
                         divclassName="my-2 col-span-12 overflow-x-auto lg:col-span-12"
                         tableclassName="dataTable w-full text-sm align-middle whitespace-nowrap no-footer"

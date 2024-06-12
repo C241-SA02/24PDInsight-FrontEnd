@@ -41,7 +41,7 @@ const Analytics: React.FC<Props> = () => {
     if (isFetching) {
       const intervalId = setInterval(() => {
         fetchData();
-      }, 2000);
+      }, 5000);
 
       fetchData(); // Initial fetch
 

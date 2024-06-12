@@ -3,6 +3,7 @@ import * as d3 from 'd3';
 import cloud from 'd3-cloud';
 import { scaleOrdinal } from 'd3-scale';
 import { schemeCategory10 } from 'd3-scale-chromatic';
+import { Oval } from 'react-loader-spinner';
 
 interface OriginalWord {
   size: string;
@@ -50,7 +51,7 @@ const WordCloudComponent: React.FC<WordCloudComponentProps> = ({ data }) => {
     const width = 500 - margin.left - margin.right;
     const height = 500 - margin.top - margin.bottom;
 
-    if (d3Container.current && data) {
+    if (d3Container.current && data && data.length > 0) {
       d3.select(d3Container.current).selectAll('*').remove();
 
       const svg = d3.select(d3Container.current)
@@ -72,6 +73,23 @@ const WordCloudComponent: React.FC<WordCloudComponentProps> = ({ data }) => {
       layout.start();
     }
   }, [data]);
+
+  if (!data || data.length === 0) {
+    return (
+      <div style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+        <Oval
+          height={50}
+          width={50}
+          color="#66a1ff"
+          visible={true}
+          ariaLabel="oval-loading"
+          secondaryColor="#284066"
+          strokeWidth={2}
+          strokeWidthSecondary={2}
+        />
+      </div>
+    );
+  }
 
   return (
     <div style={{ width: '100%', height: '100%', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>

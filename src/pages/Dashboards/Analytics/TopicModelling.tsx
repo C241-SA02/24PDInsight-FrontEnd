@@ -4,12 +4,12 @@ import {
   Bar,
   XAxis,
   YAxis,
-  CartesianGrid,
   Tooltip,
   Legend,
   Cell,
   Rectangle
 } from "recharts";
+import { Oval } from 'react-loader-spinner';
 
 interface TopicModellingProps {
   data: any[] | null;
@@ -45,9 +45,20 @@ const TopicModelling: React.FC<TopicModellingProps> = ({ data }) => {
           <div className="flex items-center gap-2">
             <h6 className="mb-3 text-15 grow">Topic Modelling - Topic 0</h6>
           </div>
-          <div>
-            {isLoading ? (
-              <p>Loading...</p>
+          <div style={{ width: '100%', height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
+            {isLoading || dataTopic0.length === 0 ? (
+              <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
+                <Oval
+                  height={50}
+                  width={50}
+                  color="#66a1ff"
+                  visible={true}
+                  ariaLabel="oval-loading"
+                  secondaryColor="#284066"
+                  strokeWidth={2}
+                  strokeWidthSecondary={2}
+                />
+              </div>
             ) : (
               <BarChart
                 width={500}
@@ -80,9 +91,20 @@ const TopicModelling: React.FC<TopicModellingProps> = ({ data }) => {
           <div className="flex items-center gap-2">
             <h6 className="mb-3 text-15 grow">Topic Modelling - Topic 1</h6>
           </div>
-          <div>
-            {isLoading ? (
-              <p>Loading...</p>
+          <div style={{ width: '100%', height: '300px', display: 'flex', justifyContent: 'center', alignItems: 'center', position: 'relative' }}>
+            {isLoading || dataTopic1.length === 0 ? (
+              <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}>
+                <Oval
+                  height={50}
+                  width={50}
+                  color="#66a1ff"
+                  visible={true}
+                  ariaLabel="oval-loading"
+                  secondaryColor="#284066"
+                  strokeWidth={2}
+                  strokeWidthSecondary={2}
+                />
+              </div>
             ) : (
               <BarChart
                 width={500}

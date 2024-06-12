@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import ContentLoader from "react-content-loader"
 
 // Styled components for highlighting entities
 const Entity = styled.span<{ type: string }>`
@@ -29,30 +30,37 @@ const Entity = styled.span<{ type: string }>`
     }};
     color: ${props => {
         switch (props.type) {
-            case 'Angka': 
-            case 'Tanggal': 
-            case 'Peristiwa': 
-            case 'Fasilitas': 
-            case 'Entitas Geologi': 
-            case 'Bahasa': 
-            case 'Hukum': 
-            case 'Lokasi': 
-            case 'Uang': 
-            case 'Norma': 
-            case 'Ordinat': 
-            case 'Organisasi': 
-            case 'Orang': 
-            case 'Proses': 
-            case 'Produk': 
-            case 'Jumlah': 
-            case 'Agama': 
-            case 'Waktu': 
+            case 'Angka':
+            case 'Tanggal':
+            case 'Peristiwa':
+            case 'Fasilitas':
+            case 'Entitas Geologi':
+            case 'Bahasa':
+            case 'Hukum':
+            case 'Lokasi':
+            case 'Uang':
+            case 'Norma':
+            case 'Ordinat':
+            case 'Organisasi':
+            case 'Orang':
+            case 'Proses':
+            case 'Produk':
+            case 'Jumlah':
+            case 'Agama':
+            case 'Waktu':
             case 'Karya': return '#000000'; // Black
             default: return 'inherit';
         }
     }};
     padding: 2px 4px;
     border-radius: 4px;
+`;
+
+const LoadingSpinnerContainer = styled.div`
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
 `;
 
 interface NamedEntityRecognitionProps {
@@ -108,13 +116,49 @@ const NamedEntityRecognition: React.FC<NamedEntityRecognitionProps> = ({ nerAnal
                         <h6 className="mb-3 text-15 grow">Named Entity Recognition</h6>
                     </div>
                     <div>
-                        {parsedEntities.map((entity, index) => (
-                            entity.type ? (
-                                <Entity key={index} type={entity.type}>{entity.value}</Entity>
-                            ) : (
-                                <span key={index}>{entity.value} </span>
-                            )
-                        ))}
+                        {nerAnalysis ? (
+                            parsedEntities.map((entity, index) => (
+                                entity.type ? (
+                                    <Entity key={index} type={entity.type}>{entity.value}</Entity>
+                                ) : (
+                                    <span key={index}>{entity.value} </span>
+                                )
+                            ))
+                        ) : (
+                            <ContentLoader
+                                speed={1.5}
+                                width={1080}
+                                height={84}
+                                viewBox="0 0 1080 84"
+                                backgroundColor="#9e9e9e"
+                                foregroundColor="#ffffff"
+                            >
+                                <rect x="14" y="5" rx="3" ry="3" width="67" height="11" />
+                                <rect x="76" y="5" rx="3" ry="3" width="140" height="11" />
+                                <rect x="127" y="53" rx="3" ry="3" width="53" height="11" />
+                                <rect x="187" y="53" rx="3" ry="3" width="72" height="11" />
+                                <rect x="18" y="53" rx="3" ry="3" width="100" height="11" />
+                                <rect x="18" y="28" rx="3" ry="3" width="140" height="11" />
+                                <rect x="166" y="28" rx="3" ry="3" width="173" height="11" />
+                                <rect x="332" y="5" rx="3" ry="3" width="53" height="11" />
+                                <rect x="392" y="5" rx="3" ry="3" width="72" height="11" />
+                                <rect x="223" y="5" rx="3" ry="3" width="100" height="11" />
+                                <rect x="266" y="53" rx="3" ry="3" width="67" height="11" />
+                                <rect x="342" y="53" rx="3" ry="3" width="140" height="11" />
+                                <rect x="598" y="53" rx="3" ry="3" width="53" height="11" />
+                                <rect x="658" y="53" rx="3" ry="3" width="72" height="11" />
+                                <rect x="489" y="53" rx="3" ry="3" width="100" height="11" />
+                                <rect x="348" y="28" rx="3" ry="3" width="140" height="11" />
+                                <rect x="604" y="28" rx="3" ry="3" width="53" height="11" />
+                                <rect x="664" y="28" rx="3" ry="3" width="72" height="11" />
+                                <rect x="495" y="28" rx="3" ry="3" width="100" height="11" />
+                                <rect x="583" y="5" rx="3" ry="3" width="53" height="11" />
+                                <rect x="643" y="5" rx="3" ry="3" width="72" height="11" />
+                                <rect x="474" y="5" rx="3" ry="3" width="100" height="11" />
+                                <rect x="722" y="5" rx="3" ry="3" width="67" height="11" />
+                                <rect x="740" y="5" rx="3" ry="3" width="67" height="11" />
+                            </ContentLoader>
+                        )}
                     </div>
                 </div>
             </div>

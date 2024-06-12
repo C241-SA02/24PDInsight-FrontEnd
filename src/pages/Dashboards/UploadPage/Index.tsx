@@ -6,7 +6,7 @@ import UploadPage from './uploadPage';
 const UploadCard = () => {
     return (
         <React.Fragment>
-            <BreadCrumb title='Ecommerce' pageTitle='Upload Files' />
+            <BreadCrumb title='Upload Files' pageTitle='Upload Files' />
                 <UploadPage />
         </React.Fragment>
     );

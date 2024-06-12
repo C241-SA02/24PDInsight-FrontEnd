@@ -9,7 +9,7 @@ const HistoryTable = () => {
     return (
         <React.Fragment>
             <div className="container-fluid group-data-[content=boxed]:max-w-boxed mx-auto">
-                <BreadCrumb title="Datatable" pageTitle="History" />
+                <BreadCrumb title="History" pageTitle="History" />
                 <RowBorders />
             </div>
         </React.Fragment>

@@ -64,7 +64,7 @@ const TopicModelling: React.FC<TopicModellingProps> = ({ data }) => {
                 <YAxis domain={[0, 0.1]} />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="importance" shape={renderCustomizedBar}>
+                <Bar dataKey="importance" shape={renderCustomizedBar} fill="#8884d8">
                   {dataTopic0.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill="#8884d8" />
                   ))}
@@ -99,7 +99,7 @@ const TopicModelling: React.FC<TopicModellingProps> = ({ data }) => {
                 <YAxis domain={[0, 0.1]} />
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="importance" shape={renderCustomizedBar}>
+                <Bar dataKey="importance" shape={renderCustomizedBar} fill="#82ca9d">
                   {dataTopic1.map((entry, index) => (
                     <Cell key={`cell-${index}`} fill="#82ca9d" />
                   ))}

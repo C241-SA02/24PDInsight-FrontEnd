@@ -1,6 +1,8 @@
 import React, { useEffect, useRef } from 'react';
 import * as d3 from 'd3';
 import cloud from 'd3-cloud';
+import { scaleOrdinal } from 'd3-scale';
+import { schemeCategory10 } from 'd3-scale-chromatic';
 
 interface OriginalWord {
   size: string;
@@ -23,6 +25,8 @@ interface WordCloudComponentProps {
   data: ConvertedWord[] | null;
 }
 
+const getColor = scaleOrdinal(schemeCategory10); // Using d3 color scheme
+
 const WordCloudComponent: React.FC<WordCloudComponentProps> = ({ data }) => {
   const d3Container = useRef<SVGSVGElement | null>(null);
 
@@ -33,7 +37,7 @@ const WordCloudComponent: React.FC<WordCloudComponentProps> = ({ data }) => {
         .data(words)
         .enter().append('text')
         .style('font-size', (d: any) => `${d.size}px`)
-        .style('fill', '#69b3a2')
+        .style('fill', (d: any) => getColor(d.text)) // Apply color function here
         .attr('text-anchor', 'middle')
         .style('font-family', 'Impact')
         .attr('transform', (d: any) => `translate(${d.x},${d.y})rotate(${d.rotate})`)
@@ -43,8 +47,8 @@ const WordCloudComponent: React.FC<WordCloudComponentProps> = ({ data }) => {
 
   useEffect(() => {
     const margin = { top: 10, right: 10, bottom: 10, left: 10 };
-    const width = 600 - margin.left - margin.right; // Adjusted width
-    const height = 400 - margin.top - margin.bottom; // Adjusted height
+    const width = 500 - margin.left - margin.right; // Adjusted width
+    const height = 300 - margin.top - margin.bottom; // Adjusted height
 
     if (d3Container.current && data) {
       const svg = d3.select(d3Container.current)
@@ -56,9 +60,9 @@ const WordCloudComponent: React.FC<WordCloudComponentProps> = ({ data }) => {
       const layout = cloud<ConvertedWord>()
         .size([width, height])
         .words(data)
-        .padding(5)
+        .padding(10)  
         .rotate(() => (Math.random() > 0.5 ? 90 : 0))
-        .fontSize(d => d.size * 8) // Increased font size
+        .fontSize(d => d.size * 3) // Increased font size
         .on('end', draw);
 
       layout.start();

@@ -5,26 +5,50 @@ import styled from 'styled-components';
 const Entity = styled.span<{ type: string }>`
     background-color: ${props => {
         switch (props.type) {
-            case 'Angka': return '#8B0000'; // DarkRed
-            case 'Tanggal': return '#8B4513'; // SaddleBrown
-            case 'Peristiwa': return '#2F4F4F'; // DarkSlateGray
-            case 'Fasilitas': return '#556B2F'; // DarkOliveGreen
-            case 'Entitas Geologi': return '#006400'; // DarkGreen
-            case 'Bahasa': return '#8B008B'; // DarkMagenta
-            case 'Hukum': return '#8B3626'; // Firebrick4
-            case 'Lokasi': return '#8B1C62'; // DeepPink4
-            case 'Uang': return '#8B3A3A'; // IndianRed4
-            case 'Norma': return '#8B4500'; // DarkOrange4
-            case 'Ordinat': return '#8B4789'; // Orchid4
-            case 'Organisasi': return '#8B8000'; // Yellow4
-            case 'Orang': return '#00008B'; // DarkBlue
-            case 'Proses': return '#2E8B57'; // SeaGreen
-            case 'Produk': return '#8B2252'; // VioletRed4
-            case 'Jumlah': return '#4B0082'; // Indigo
-            case 'Agama': return '#8B0000'; // DarkRed
-            case 'Waktu': return '#8B4513'; // SaddleBrown
-            case 'Karya': return '#2F4F4F'; // DarkSlateGray
+            case 'Angka': return '#FFB3BA'; // Pastel Pink
+            case 'Tanggal': return '#FFDFBA'; // Pastel Orange
+            case 'Peristiwa': return '#FFFFBA'; // Pastel Yellow
+            case 'Fasilitas': return '#BAFFC9'; // Pastel Green
+            case 'Entitas Geologi': return '#BAE1FF'; // Pastel Blue
+            case 'Bahasa': return '#E2C6FF'; // Pastel Purple
+            case 'Hukum': return '#FFD1DC'; // Pastel Rose
+            case 'Lokasi': return '#F7E1A0'; // Pastel Lemon
+            case 'Uang': return '#B4E5FF'; // Pastel Sky Blue
+            case 'Norma': return '#D4A5A5'; // Pastel Brown
+            case 'Ordinat': return '#FFB2A1'; // Pastel Coral
+            case 'Organisasi': return '#C2FFD2'; // Pastel Mint
+            case 'Orang': return '#A1CFF7'; // Pastel Periwinkle
+            case 'Proses': return '#FFE4E1'; // Pastel Pink Blush
+            case 'Produk': return '#D7C4BB'; // Pastel Latte
+            case 'Jumlah': return '#E6A1E6'; // Pastel Lavender
+            case 'Agama': return '#FFB3BA'; // Pastel Pink
+            case 'Waktu': return '#FFDFBA'; // Pastel Orange
+            case 'Karya': return '#FFFFBA'; // Pastel Yellow
             default: return 'none';
+        }
+    }};
+    color: ${props => {
+        switch (props.type) {
+            case 'Angka': 
+            case 'Tanggal': 
+            case 'Peristiwa': 
+            case 'Fasilitas': 
+            case 'Entitas Geologi': 
+            case 'Bahasa': 
+            case 'Hukum': 
+            case 'Lokasi': 
+            case 'Uang': 
+            case 'Norma': 
+            case 'Ordinat': 
+            case 'Organisasi': 
+            case 'Orang': 
+            case 'Proses': 
+            case 'Produk': 
+            case 'Jumlah': 
+            case 'Agama': 
+            case 'Waktu': 
+            case 'Karya': return '#000000'; // Black
+            default: return 'inherit';
         }
     }};
     padding: 2px 4px;

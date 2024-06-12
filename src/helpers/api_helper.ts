@@ -1,7 +1,7 @@
 import axios from "axios";
 // import { api } from "../config";
 
-axios.defaults.baseURL = "https://backend-o3gamajnoa-et.a.run.app/";
+axios.defaults.baseURL = "https://backend-o3gamajnoa-et.a.run.app";
 // content type
 axios.defaults.headers.post["Content-Type"] = "application/json";
 

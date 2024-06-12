@@ -118,12 +118,13 @@ const UploadPage = () => {
           }
           return true;
         })
-        .test('fileSize', 'File size must not be more than 3MB', (value: any) => {
-          if (value) {
-            return value.size <= 3145728;
-          }
-          return true;
-        }),
+        // .test('fileSize', 'File size must not be more than 3MB', (value: any) => {
+        //   if (value) {
+        //     return value.size <= 3145728;
+        //   }
+        //   return true;
+        // })
+        ,
       link: Yup.string()
         .test('linkRequired', 'Either file or link is required', function (value: any) {
           const { myFile } = this.parent;

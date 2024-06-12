@@ -50,7 +50,7 @@ const Analytics: React.FC<Props> = () => {
   }, [uid, transcribeid, isFetching]);
 
   useEffect(() => {
-    if (data && Object.keys(data).length >= 8) {
+    if (data && Object.keys(data).length >= 9) {
       setIsFetching(false); // Stop fetching when the condition is met
       console.log("Data fetching completed.");
     }

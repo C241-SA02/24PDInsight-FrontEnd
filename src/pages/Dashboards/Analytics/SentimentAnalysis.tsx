@@ -43,8 +43,8 @@ const SentimentAnalysis: React.FC<{ data: string | null }> = ({ data }) => {
           <div>
             <BarChart
               layout="vertical"
-              width={400}
-              height={300}
+              width={600}  // Increased width
+              height={500} // Increased height
               data={data ? mapData(data) : []}
             >
               <XAxis type="number" />

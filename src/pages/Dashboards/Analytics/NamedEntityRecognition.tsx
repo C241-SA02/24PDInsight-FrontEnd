@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import ContentLoader from "react-content-loader"
+import ContentLoader from "react-content-loader";
 
 // Styled components for highlighting entities
 const Entity = styled.span<{ type: string }>`
@@ -91,8 +91,8 @@ const NamedEntityRecognition: React.FC<NamedEntityRecognitionProps> = ({ nerAnal
                 parts.push({ value: cleanText.slice(lastIndex, match.index).trim(), type: null });
             }
 
-            // Push the entity
-            parts.push({ value: entityValue, type: entityType });
+            // Push the entity with its label
+            parts.push({ value: `${entityValue} [${entityType}]`, type: entityType });
 
             // Update the lastIndex
             lastIndex = regex.lastIndex;

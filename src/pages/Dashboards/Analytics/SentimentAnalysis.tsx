@@ -1,6 +1,7 @@
 import React from 'react';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Cell, Rectangle } from 'recharts';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, Cell, Rectangle } from 'recharts';
 import { Oval } from 'react-loader-spinner';
+
 interface SentimentData {
   name: string;
   value: number;
@@ -10,7 +11,7 @@ const SentimentAnalysis: React.FC<{ data: string | null }> = ({ data }) => {
   const mapData = (data: any): SentimentData[] => {
     return data.map((item: any) => ({
       name: capitalizeFirstLetter(item.label),
-      value: item.score
+      value: Math.round(item.score * 100) // Membulatkan nilai dan mengalikan dengan 100
     }));
   };
 
@@ -33,6 +34,23 @@ const SentimentAnalysis: React.FC<{ data: string | null }> = ({ data }) => {
     );
   };
 
+  const renderYAxisTick = (tickProps: any) => {
+    const { x, y, payload } = tickProps;
+    return (
+      <g transform={`translate(${x},${y})`}>
+        <text
+          x={0}
+          y={0}
+          dy={4}
+          textAnchor="end"
+          fill="#666"
+        >
+          {`${payload.value}`}
+        </text>
+      </g>
+    );
+  };
+
   return (
     <React.Fragment>
       <div className="order-3 col-span-6 2xl:order-1 card 2xl:col-span-6">
@@ -43,25 +61,25 @@ const SentimentAnalysis: React.FC<{ data: string | null }> = ({ data }) => {
           <div>
             {data ? (
               <div className="flex justify-center items-center h-full">
-              <BarChart
-                layout="vertical"
-                width={600}  // Increased width
-                height={500} // Increased height
-                data={data ? mapData(data) : []}
-              >
-                <XAxis type="number" />
-                <YAxis type="category" dataKey="name" />
-                <Tooltip />
-                <Bar dataKey="value" shape={renderCustomizedBar}>
-                  {data && mapData(data).map((entry, index) => {
-                    let color;
-                    if (entry.name === 'Positive') color = '#00C49F'; // Green
-                    if (entry.name === 'Neutral') color = '#FFBB28'; // Yellow
-                    if (entry.name === 'Negative') color = '#FF4042'; // Red
-                    return <Cell key={`cell-${index}`} fill={color} />;
-                  })}
-                </Bar>
-              </BarChart>
+                <BarChart
+                  layout="vertical"
+                  width={600}  // Increased width
+                  height={500} // Increased height
+                  data={data ? mapData(data) : []}
+                >
+                  <XAxis type="number" />
+                  <YAxis type="category" dataKey="name" tick={renderYAxisTick} />
+                  <Tooltip formatter={(value) => `${value}%`} /> {/* Menambahkan tanda "%" di tooltip */}
+                  <Bar dataKey="value" shape={renderCustomizedBar}>
+                    {data && mapData(data).map((entry, index) => {
+                      let color;
+                      if (entry.name === 'Positive') color = '#00C49F'; // Green
+                      if (entry.name === 'Neutral') color = '#FFBB28'; // Yellow
+                      if (entry.name === 'Negative') color = '#FF4042'; // Red
+                      return <Cell key={`cell-${index}`} fill={color} />;
+                    })}
+                  </Bar>
+                </BarChart>
               </div>
             ) : (
               <div className="flex justify-center items-center h-full">

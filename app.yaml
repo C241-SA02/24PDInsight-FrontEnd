@@ -1,0 +1,22 @@
+runtime: nodejs18
+
+handlers:
+  # Serve all static files with url ending with a file extension
+  - url: /(.*\..+)$
+    static_files: build/\1
+    upload: build/(.*\..+)$
+
+  # Catch all handler to index.html
+  - url: /.*
+    static_files: build/index.html
+    upload: build/index.html
+
+env_variables:
+  REACT_APP_APIKEY: "AIzaSyA-08zqD7FKrPxxrLIZoT92kVEnOPffXbs"
+  REACT_APP_AUTHDOMAIN: "pdinsight-eb5dc.firebaseapp.com"
+  REACT_APP_DATABASEURL: "https://pdinsight-ea03f-default-rtdb.asia-southeast1.firebasedatabase.app/"
+  REACT_APP_PROJECTID: "pdinsight-eb5dc"
+  REACT_APP_STORAGEBUCKET: "pdinsight-eb5dc.appspot.com"
+  REACT_APP_MESSAGINGSENDERID: "96057552774"
+  REACT_APP_APPID: "1:96057552774:web:92e1eff926d9d7d8e80607"
+  REACT_APP_MEASUREMENTID: "G-QSGD20ZMLN"

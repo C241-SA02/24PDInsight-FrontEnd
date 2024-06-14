@@ -98,7 +98,7 @@ const Login = (props: any) => {
                                 You have <b>failed</b> signed in.
                             </div>}
                             <div className="mb-3">
-                                <label htmlFor="email" className="inline-block mb-2 text-base font-medium">UserName/ Email ID</label>
+                                <label htmlFor="email" className="inline-block mb-2 text-base font-medium">Email</label>
                                 <input
                                     type="text"
                                     id="email"

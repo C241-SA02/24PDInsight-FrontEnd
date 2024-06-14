@@ -21,11 +21,11 @@ git clone https://github.com/C241-SA02/24PDInsight-FrontEnd.git
 ```
 
 ## Installation
-1. Install Node
+**1. Install Node**
 - Recommended Node.js version: >18
 - Make sure to have Node.js installed and running on your computer. If you already have Node installed with a version greater than 18, you can skip this step.
 
-2. Install Dependencies
+**2. Install Dependencies**
 ```bash
 npm install
 ```
@@ -33,12 +33,12 @@ or
 ```bash
 yarn add
 ```
-3. Set up Environment Variables
+**3. Set up Environment Variables**
 - Create a .env file in the root directory of the project.
 - Add the following environment variable to the .env file.
 - Ensure to set your backend URL in the api_helper.
 
-4. Build the Project
+**4. Build the Project**
 ```bash
 npm run build
 ```
@@ -47,7 +47,7 @@ or
 yarn build
 ```
 
-5. Run the Project Locally
+**5. Run the Project Locally**
 ```bash
 npm start
 ```

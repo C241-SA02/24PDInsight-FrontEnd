@@ -48,7 +48,6 @@ const Register = () => {
     });
 
     React.useEffect(() => {
-
         if (success) {
             navigation('/login')
         }

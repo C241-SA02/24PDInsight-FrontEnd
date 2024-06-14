@@ -18,7 +18,7 @@ To get started with 24PDInsight, follow these steps:
 Clone the repository to your local machine:
 ```bash
 git clone https://github.com/C241-SA02/24PDInsight-FrontEnd.git
-
+```
 
 ## Installation
 1. Install Node
@@ -28,9 +28,11 @@ git clone https://github.com/C241-SA02/24PDInsight-FrontEnd.git
 2. Install Dependencies
 ```bash
 npm install
+```
 or
+```bash
 yarn add
-
+```
 3. Set up Environment Variables
 - Create a .env file in the root directory of the project.
 - Add the following environment variable to the .env file.
@@ -39,15 +41,20 @@ yarn add
 4. Build the Project
 ```bash
 npm run build
+```
 or
+```bash
 yarn build
+```
 
 5. Run the Project Locally
 ```bash
 npm start
+```
 or
+```bash
 yarn start
-
+```
 
 ## License
 This project is licensed under the MIT License.
